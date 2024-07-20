@@ -27,6 +27,20 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             width: 100%;
+            position: relative; /* Added to position the back button */
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1; /* Ensure it stays above content */
+        }
+
+        .back-button img {
+            width: 30px; /* Adjust the size as needed */
+            height: 30px;
         }
 
         h1, h2, h3 {
@@ -64,6 +78,10 @@
 </head>
 <body>
     <div class="container">
+        <a href="/templates/landingpage.html" class="back-button">
+            <img src="/assets/back-icon.png" alt="Back">
+        </a>
+        <br>
         <h1>Bulimia Nervosa</h1>
         <p>Bulimia nervosa is an eating disorder characterized by a cycle of bingeing and compensatory behaviors such as self-induced vomiting designed to undo or compensate for the effects of binge eating.</p>
 
@@ -106,3 +124,4 @@
     </div>
 </body>
 </html>
+

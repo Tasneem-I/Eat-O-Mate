@@ -11,7 +11,7 @@
             align-items: flex-start;
             min-height: 100vh;
             margin: 0;
-            background: url('/assets/img.png') no-repeat center center;
+            background: url('assets/img.png') no-repeat center center;
             background-size: cover;
             font-family: Arial, sans-serif;
             overflow-y: auto;
@@ -27,6 +27,19 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             width: 100%;
+            position: relative; /* Position relative for the back button */
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .back-button img {
+            width: 30px; /* Adjust the size as needed */
+            height: 30px;
         }
 
         h1, h2, h3 {
@@ -64,6 +77,10 @@
 </head>
 <body>
     <div class="container">
+        <a href="/templates/avoidant.html" class="back-button">
+            <img src="/assets/back-icon.png" alt="Back">
+        </a>
+        <br>
         <h1>Avoidant/Restrictive Food Intake Disorder (ARFID)</h1>
         <p>Avoidant/Restrictive Food Intake Disorder (ARFID) is an eating disorder that involves limitations in the amount or type of food consumed, but unlike anorexia nervosa, it does not involve distress about body shape or size, or fears of fatness. People with ARFID may avoid certain foods or restrict their intake due to sensory issues, fear of choking or vomiting, or a lack of interest in eating.</p>
 
@@ -82,11 +99,11 @@
 
         <h2>Causes</h2>
         <p>The exact cause of ARFID is not fully understood. It may result from a combination of biological, psychological, and environmental factors.</p>
-        <h3>1. Biological</h3>
+        <h3>Biological</h3>
         <p>Genetic and biological factors may play a role in the development of ARFID. Some individuals may have heightened sensitivity to sensory input, making certain foods unpleasant or intolerable.</p>
-        <h3>2. Psychological</h3>
+        <h3>Psychological</h3>
         <p>Psychological factors, such as anxiety or a history of traumatic experiences with eating (e.g., choking or vomiting), can contribute to the development of ARFID. Individuals with autism spectrum disorder or other neurodevelopmental disorders are at higher risk.</p>
-        <h3>3. Environmental</h3>
+        <h3>Environmental</h3>
         <p>Environmental influences, including cultural attitudes toward food and eating, family dynamics, and exposure to stressful events, can also contribute to ARFID. Early childhood experiences with food and eating can have a lasting impact.</p>
 
         <h2>Prevention</h2>
@@ -101,3 +118,5 @@
     </div>
 </body>
 </html>
+
+

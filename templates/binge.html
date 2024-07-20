@@ -27,6 +27,19 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             width: 100%;
+            position: relative; /* Position relative for the back button */
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .back-button img {
+            width: 30px; /* Adjust the size as needed */
+            height: 30px;
         }
 
         h1, h2, h3 {
@@ -64,8 +77,12 @@
 </head>
 <body>
     <div class="container">
+        <a href="/templates/landingpage.html" class="back-button">
+            <img src="/assets/back-icon.png" alt="Back">
+        </a>
+        <br>
         <h1>Binge Eating Disorder</h1>
-        <p>Binge Eating Disorder is characterized by recurrent episodes of eating large quantities of food, often quickly and to the point of discomfort; a feeling of loss of control during the binge; experiencing shame, distress or guilt afterwards; and not regularly using unhealthy compensatory measures (e.g., purging) to counter the binge eating.</p>
+        <p>Binge Eating Disorder is characterized by recurrent episodes of eating large quantities of food, often quickly and to the point of discomfort; a feeling of loss of control during the binge; experiencing shame, distress, or guilt afterwards; and not regularly using unhealthy compensatory measures (e.g., purging) to counter the binge eating.</p>
 
         <h2>Symptoms</h2>
         <ul>
@@ -83,11 +100,11 @@
 
         <h2>Causes</h2>
         <p>The exact cause of Binge Eating Disorder is not fully understood. It may be caused by a combination of genetic, biological, emotional, behavioral, psychological, and social factors.</p>
-        <h3>1. Biological</h3>
+        <h3>Biological</h3>
         <p>There may be genetic and hormonal factors that influence the development of Binge Eating Disorder. People with first-degree relatives who have an eating disorder are more likely to develop an eating disorder themselves.</p>
-        <h3>2. Psychological</h3>
+        <h3>Psychological</h3>
         <p>Psychological and emotional issues can contribute to the onset of Binge Eating Disorder. People with the disorder may have low self-esteem, depression, anxiety, and other mental health issues.</p>
-        <h3>3. Environmental</h3>
+        <h3>Environmental</h3>
         <p>Societal attitudes toward body image, family dynamics, and life events can also play a role. Stressful life changes and trauma are common environmental factors linked to Binge Eating Disorder.</p>
 
         <h2>Prevention</h2>
@@ -102,3 +119,4 @@
     </div>
 </body>
 </html>
+
