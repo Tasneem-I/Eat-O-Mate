@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAT-O-MATE</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('assets/img.png') no-repeat center center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo {
+            height: 350px;
+            width: 350px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInLogo 2s forwards;
+        }
+
+        .title {
+            font-size: 4em;
+            font-family: luminari, fantasy;
+            color: #53655c;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 2s forwards 2s;
+        }
+
+        .quote {
+            font-size: 2em;
+            font-family: luminari, fantasy;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 2s forwards 2s;
+        }
+
+        .login-button {
+            padding: 10px 40px; /* Increased width by increasing horizontal padding */
+            font-size: 1em;
+            cursor: pointer;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeInButton 2s forwards 4s;
+        }
+
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInButton {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/assets/image.png" alt="Logo" class="logo">
+        <br><br>
+        <div class="title">&nbsp;EAT-O-MATE</div><br>
+        <div class="quote">&nbsp;"We Help Your Life Healthier Every Day"</div><br>
+        <button class="login-button">Login</button>
+    </div>
+</body>
+</html>
+
+
+
