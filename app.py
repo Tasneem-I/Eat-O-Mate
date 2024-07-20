@@ -55,6 +55,33 @@ class MealLog(db.Model):
     eat_with = db.Column(db.String(50), nullable=False)
 
 
+db.init_app(app)
+with app.app_context():
+    db.create_all()
+
+with app.app_context():
+    db.create_all()
+    # Add initial pet monsters if not already added
+    if not PetMon.query.first():
+        mons = [
+            PetMon(name="Fuzzlet", rank="Common", points=160, image="fuzzlet.jpeg"),
+            PetMon(name="Twinkle Tuft", rank="Common", points=180, image="twinklefuft.jpeg"),
+            PetMon(name="Mystic Mole", rank="Common", points=150, image="mysticmole.jpg"),
+            PetMon(name="Aurora Puff", rank="Rare", points=300, image="aurorapuff.jpg"),
+            PetMon(name="Dew Drop", rank="Rare", points=450, image="dewdrop.jpeg"),
+            PetMon(name="Pixie Paw", rank="Rare", points=250, image="pixiepaw.jpeg"),
+            PetMon(name="Lumin Puff", rank="Epic", points=600, image="luminpuff.jpeg"),
+            PetMon(name="Fae Fox", rank="Epic", points=500, image="faefox.jpeg"),
+            PetMon(name="Moon Whisk", rank="Legendary", points=800, image="moonwhisk.jpeg"),
+            PetMon(name="Nebula Elder",rank="Legendary",points=770,image="nebulaelder.jpg",),
+            PetMon(name="Whimsy Bee", rank="Legendary", points=890, image="whimsybee.jpeg"),
+            PetMon(name="Moon Ripple",rank="Extinct",points=1200,image="Moonripple.jpeg",),
+            PetMon(name="Glimmer Lynx",rank="Extinct",points=2000,image="glimmerlynx.jpeg",),
+            PetMon(name="Frost Whisker",rank="Extinct",points=1600,image="frostwhisker.jpeg",),# Add more pet monsters as needed
+        ]
+        db.session.add_all(mons)
+        db.session.commit()
+
 
 @login_manager.user_loader
 def user_load(user_id):
