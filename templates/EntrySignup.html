@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENTRY SIGNUP</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url('/assets/img.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow-x: auto;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 80%;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+        .card h2 {
+            margin-top: 0;
+            text-align: left;
+        }
+        .card p {
+            flex: 1;
+            text-align: left;
+        }
+        .card button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .mission-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            line-height: 1.5;
+        }
+        .mission-card .text {
+            width: 60%;
+        }
+        .mission-card .gif {
+            width: 35%;
+        }
+        .mission-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mission-card">
+            <div class="text">
+                <h2><center>ABOUT US</h2></center>
+                <p>
+                    Our mission is to empower individuals with knowledge and support to overcome eating disorders. Our app is designed for users of all ages, featuring a comprehensive diagnosis system with both Short and Long Screening methods. To help manage urges to overeat, we offer a Distraction tab filled with engaging activities. Additionally, our chatbot provides personalized emotional support. Users earn points through participation, which can be used to acquire attractive cards as a reward for their progress.
+                </p>
+            </div>
+            <div class="gif">
+                <img src="/assets/aboutimg.webp" alt="Support GIF">
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+            <div class="card">
+                <h2>Short Screening</h2>
+                <p>
+                    <b>Duration</b>: 1 minute<br>
+                    <b>Number of Questions</b>: 9<br>
+                    <b>Nuture Stars Gained</b>: 0<br><br>
+                    You can get an idea about your current state of body.<br>
+                    These questions provide basic insights into the severity of eating disorders.<br><br>
+                    For a more detailed diagnosis, consider taking a comprehensive screening test.<br>
+                    That will offer a deeper understanding and more accurate assessment of your eating behaviors and related concerns.<br><br>
+                    Running out of time? Take this quick test!!<br>
+                    <button onclick="location.href='shortscreening.html'">Take Test</button>
+                </p>
+            </div>
+            <div class="card">
+                <h2>Long Screening</h2>
+                <p>
+                    <b>Duration</b>: 4 minutes<br>
+                    <b>Number of Questions</b>: 27<br>
+                    <b>Nuture Stars Gained</b>: 100<br><br>
+                    The long screening test, which includes 27 questions, offers a detailed analysis and more accurate assessment of eating behaviors compared to the short screening.<br><br>
+                    It provides a comprehensive understanding and more precise guidance for your situation, helping you gain clearer insights into potential eating disorders.<br><br>
+                    Have enough time? That's cool! Take up this test then.<br><br>
+                    <button onclick="location.href='longscreening.html'">Take Test</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
