@@ -60,6 +60,7 @@
 </head>
 <body>
     <h1>Distraction Time!</h1>
+    <div id="countdown"></div>
     <div class="container">
         <div class="image-section">
             <img id="yogaImage" src="{{ img }}" alt="Yoga Pose">
@@ -84,6 +85,17 @@
           .catch(err => {
             console.error("Error accessing webcam:", err);
           });
+
+          var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "Finished";
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  }
+  timeleft -= 1;
+}, 1000);
     </script>
 </body>
 </html>
