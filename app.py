@@ -168,7 +168,7 @@ def meal_log():
 
 
 
-@app.route('/distract')
+@app.route('/distract', methods=["GET", "POST"])
 def distract():
     if request.method == "POST":
         global img

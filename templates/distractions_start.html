@@ -96,14 +96,14 @@ W+ALEwIH"
         margin-left: 2%;
         margin-right: 2%; /* Added padding */
       }
-      .image {
-        margin-left: 20px; /* Adjusted to space between */
-        float: right; /* Float image to the right */
+      /*.image {
+        margin-left: 20px; 
+        float: right; 
       }
       .image img {
         max-width: 100%;
-        max-height: 500px; /* Set maximum height for the image */
-      }
+        max-height: 500px; 
+      }*/
       .text {
         font-size: 20px;
         color: black;
@@ -217,9 +217,16 @@ W+ALEwIH"
           <i>You can also earn Nurture stars through this, so what are you waiting for?</i>
         </p>
       </div>
-      <img class="image" src="assets\wheels.gif" alt="Description of the gif" style="width: 50%;"/>
+      <img class="image" src="/static/wheels.gif" alt="Description of the gif" style="width: 50%;"/>
     </div>
-    <form method="post" action="#">
-    <center><button type="submit" style="width: 15%; align-content: center; font-size:large; margin-top: 1%;margin-bottom: 3%;"><b>Start</b></button></center></form>
+    <form method="post" action="#" id="distractForm">
+    <center><button type="submit" class="start-button" onclick="submitForm()" style="width: 15%; align-content: center; font-size:large; margin-top: 1%;margin-bottom: 3%;"><b>Start</b></button></center></form>
+    <script>
+        function submitForm() {
+            document.getElementById('distractForm').submit();
+        }
+    </script>
+
 </body>
+
 </html>
