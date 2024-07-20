@@ -97,6 +97,36 @@ def home():
 def homes():
     return render_template("landingpage.html")
 
+@app.route("/anorexia")
+def ano():
+    return render_template("anorexia.html")
+
+@app.route("/bullimia")
+def bul():
+    return render_template("bullimia.html")
+
+@app.route("/binge")
+def bin():
+    return render_template("binge.html")
+
+@app.route("/avoidant")
+def avo():
+    return render_template("avoidant.html")
+
+@app.route("/signup_start")
+def start():
+    return render_template("EntrySignup.html")
+
+@app.route("/longscreen")
+def long():
+    return render_template("LongScreening.html")
+
+@app.route("/shortscreen")
+def short():
+    return render_template("ShortScreening.html")
+
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -168,16 +198,16 @@ def meal_log():
 
 
 
-
 @app.route('/distract', methods=["GET", "POST"])
-def distract():
-    if request.method == "POST":
-        global img
-        ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
-        img = random.choice(ex)
-        return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
-    else:
-        return render_template('/distractions_start.html')
+def distract(): 
+    return render_template('/distractions_start.html')
+
+@app.route('/distract_session')
+def distract_session():
+    global img
+    ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
+    img = random.choice(ex)
+    return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
   
 @app.route("/add_meal_log", methods=["POST"])
@@ -221,46 +251,6 @@ def get_meal_logs():
             "eat_with": log.eat_with
         } for log in logs
     ])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
