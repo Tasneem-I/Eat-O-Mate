@@ -2,55 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distractions</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        #exercise-image {
-            max-width: 100%;
-            height: auto;
-        }
-        #timer {
-            font-size: 24px;
-            margin: 20px;
-        }
-    </style>
     <script>
-        let timer;
-        let timeLeft = 10;
-
-        function startTimer() {
-            timer = setInterval(() => {
-                document.getElementById('timer').innerText = `Time left: ${timeLeft} seconds`;
-                timeLeft--;
-                if (timeLeft < 0) {
-                    clearInterval(timer);
-                    timeLeft = 10;
-                    loadNewExercise();
-                }
-            }, 1000);
+        // Function to reload the image every 30 seconds
+        function reloadImage() {
+            document.getElementById('yogaImage').src = "{{ url_for('distract') }}";
         }
 
-        function loadNewExercise() {
-            fetch('/get_random_exercise')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('exercise-image').src = data.image_url;
-                    startTimer();
-                });
-        }
-
-        window.onload = () => {
-            loadNewExercise();
-        };
+        // Call the reload function initially and then every 30 seconds
+        reloadImage();
+        setInterval(reloadImage, 30000);
     </script>
 </head>
 <body>
-    <h1>Distractions</h1>
-    <img id="exercise-image" src="" alt="Exercise Image">
-    <div id="timer">Time left: 10 seconds</div>
+    <h1>Distraction Time!</h1>
+    <img id="yogaImage" src="{{ img }}" alt="Yoga Pose"> 
 </body>
 </html>

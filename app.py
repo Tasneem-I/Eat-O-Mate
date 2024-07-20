@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request, url_for, redirect, flash
+from flask import Flask, session, render_template, request, url_for, redirect, flash, send_from_directory, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
     UserMixin,
@@ -9,6 +9,7 @@ from flask_login import (
 )
 from flask_session import Session
 from sqlalchemy import func, and_, select
+import os, random
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "uduhfufew83248374279"
@@ -39,7 +40,7 @@ class Users(UserMixin, db.Model):
     username = db.Column(db.String(40), nullable=False)
     points = db.Column(db.Integer, nullable=False)
     usertype = db.Column(db.String(70), nullable=False)
-    height = db.Column(db.Float, nullale=False)
+    height = db.Column(db.Float, nullable=False)
     weight = db.Column(db.Float, nullable=False)
 
 
@@ -62,22 +63,22 @@ with app.app_context():
 with app.app_context():
     db.create_all()
     # Add initial pet monsters if not already added
-    if not PetMon.query.first():
+    if not EatMon.query.first():
         mons = [
-            PetMon(name="Fuzzlet", rank="Common", points=160, image="fuzzlet.jpeg"),
-            PetMon(name="Twinkle Tuft", rank="Common", points=180, image="twinklefuft.jpeg"),
-            PetMon(name="Mystic Mole", rank="Common", points=150, image="mysticmole.jpg"),
-            PetMon(name="Aurora Puff", rank="Rare", points=300, image="aurorapuff.jpg"),
-            PetMon(name="Dew Drop", rank="Rare", points=450, image="dewdrop.jpeg"),
-            PetMon(name="Pixie Paw", rank="Rare", points=250, image="pixiepaw.jpeg"),
-            PetMon(name="Lumin Puff", rank="Epic", points=600, image="luminpuff.jpeg"),
-            PetMon(name="Fae Fox", rank="Epic", points=500, image="faefox.jpeg"),
-            PetMon(name="Moon Whisk", rank="Legendary", points=800, image="moonwhisk.jpeg"),
-            PetMon(name="Nebula Elder",rank="Legendary",points=770,image="nebulaelder.jpg",),
-            PetMon(name="Whimsy Bee", rank="Legendary", points=890, image="whimsybee.jpeg"),
-            PetMon(name="Moon Ripple",rank="Extinct",points=1200,image="Moonripple.jpeg",),
-            PetMon(name="Glimmer Lynx",rank="Extinct",points=2000,image="glimmerlynx.jpeg",),
-            PetMon(name="Frost Whisker",rank="Extinct",points=1600,image="frostwhisker.jpeg",),# Add more pet monsters as needed
+            EatMon(name="Fuzzlet", rank="Common", points=160, image="fuzzlet.jpeg"),
+            EatMon(name="Twinkle Tuft", rank="Common", points=180, image="twinklefuft.jpeg"),
+            EatMon(name="Mystic Mole", rank="Common", points=150, image="mysticmole.jpg"),
+            EatMon(name="Aurora Puff", rank="Rare", points=300, image="aurorapuff.jpg"),
+            EatMon(name="Dew Drop", rank="Rare", points=450, image="dewdrop.jpeg"),
+            EatMon(name="Pixie Paw", rank="Rare", points=250, image="pixiepaw.jpeg"),
+            EatMon(name="Lumin Puff", rank="Epic", points=600, image="luminpuff.jpeg"),
+            EatMon(name="Fae Fox", rank="Epic", points=500, image="faefox.jpeg"),
+            EatMon(name="Moon Whisk", rank="Legendary", points=800, image="moonwhisk.jpeg"),
+            EatMon(name="Nebula Elder",rank="Legendary",points=770,image="nebulaelder.jpg",),
+            EatMon(name="Whimsy Bee", rank="Legendary", points=890, image="whimsybee.jpeg"),
+            EatMon(name="Moon Ripple",rank="Extinct",points=1200,image="Moonripple.jpeg",),
+            EatMon(name="Glimmer Lynx",rank="Extinct",points=2000,image="glimmerlynx.jpeg",),
+            EatMon(name="Frost Whisker",rank="Extinct",points=1600,image="frostwhisker.jpeg",),# Add more pet monsters as needed
         ]
         db.session.add_all(mons)
         db.session.commit()
@@ -167,7 +168,14 @@ def meal_log():
 
 
 
+@app.route('/distract')
+def distract():
+    global img
+    ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
+    img = random.choice(ex)
+    return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
+  
 
 
 
