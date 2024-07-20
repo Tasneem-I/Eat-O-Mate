@@ -5,10 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eating Disorder Questionnaire</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url('/assets/img.png') no-repeat center center fixed;
+    background-size: cover; /* Ensures the background image covers the entire screen */
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: flex-start; /* Aligns container to the top */
+    justify-content: center; /* Centers container horizontally */
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    overflow-y: auto; /* Allows vertical scrolling if needed */
+    padding-top: 20px; /* Adds padding to the top */
+}
+.container {
+    text-align: center; /* Centers text inside the container */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background for readability */
+    border-radius: 8px; /* Rounds the corners of the container */
+    max-width: 90%; /* Adjust this value if needed */
+    max-height: 200vh; /* Ensures the container doesn’t exceed viewport height */
+    overflow: auto; /* Adds scrollbars if the content exceeds container size */
+    box-sizing: border-box; /* Ensures padding is included in the height */
+    margin-top: 20px; /* Adds margin to the top */
+}
+
         .question {
             margin-bottom: 15px;
         }
@@ -18,46 +43,132 @@
         }
         .submit-button {
             margin-top: 20px;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 2px;
+        
         }
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #ffffff; /* White background for clarity */
+    margin: 10% auto; /* Center the modal vertically and horizontally */
+    padding: 20px;
+    border-radius: 12px; /* Rounded corners */
+    width: 20vw; /* Width of the modal */
+    height: 20vw; /* Height of the modal, set to the same as width */
+    max-width: 600px; /* Maximum width */
+    max-height: 600px; /* Maximum height */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    animation: fadeIn 0.3s ease-out; /* Fade-in animation */
+    position: relative; /* Position for the close button */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ff5c5c; /* Change color on hover */
+}
+
+/* Modal Header */
+.modal-header {
+    border-bottom: 1px solid #ddd; /* Light border for header */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 10px 0;
+    text-align: center; /* Center text inside modal */
+}
+
+/* Modal Footer */
+.modal-footer {
+    border-top: 1px solid #ddd; /* Light border for footer */
+    padding-top: 10px;
+    text-align: right;
+}
+
+.modal-footer button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+        .button {
+            margin-top: 20px;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 2px;
+        
         }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+
+        
     </style>
 </head>
 <body>
-    <h1>Eating Disorder Questionnaire</h1>
+   
     
     <form id="questionnaire">
         <!-- Anorexia Nervosa Questions -->
-        <div class="question">
+        <div class="question"><br>
+            <h1><pre>          LONG SCREENING </pre></h1>
             <h3>1. How often do you think about food and weight?</h3>
             <label><input type="radio" name="q1" value="0" required> Never</label>
             <label><input type="radio" name="q1" value="1"> Rarely</label>
@@ -278,7 +389,7 @@
             <label><input type="radio" name="q27" value="4"> Very Often</label>
         </div>
 
-        <button class="submit-button" type="button" onclick="calculateResult()">Submit</button>
+      <center>  <button class="submit-button" type="button" onclick="calculateResult()" >Submit</button></center>
     </form>
 
     <div id="resultModal" class="modal">
