@@ -91,11 +91,11 @@ def user_load(user_id):
 short_model = joblib.load("short_screen_model/final_dt.joblib")
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("landingpage.html")
 
 @app.route("/home")
 def homes():
-    return render_template("home_loggedin.html")
+    return render_template("landingpage.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
