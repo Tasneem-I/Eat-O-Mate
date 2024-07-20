@@ -88,7 +88,7 @@ with app.app_context():
 def user_load(user_id):
     return Users.query.get(int(user_id))
 
-short_model = joblib.load("final_dt.joblib")
+short_model = joblib.load("short_screen_model/final_dt.joblib")
 @app.route("/")
 def home():
     return render_template("index.html")
