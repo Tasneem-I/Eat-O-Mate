@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eating Disorder Screening</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url('/assets/img.png') no-repeat center center fixed;
+    background-size: cover; /* Ensures the background image covers the entire screen */
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: flex-start; /* Aligns container to the top */
+    justify-content: center; /* Centers container horizontally */
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    overflow-y: auto; /* Allows vertical scrolling if needed */
+    padding-top: 20px; /* Adds padding to the top */
+}
+.container {
+    text-align: center; /* Centers text inside the container */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background for readability */
+    border-radius: 8px; /* Rounds the corners of the container */
+    max-width: 90%; /* Adjust this value if needed */
+    max-height: 200vh; /* Ensures the container doesn’t exceed viewport height */
+    overflow: auto; /* Adds scrollbars if the content exceeds container size */
+    box-sizing: border-box; /* Ensures padding is included in the height */
+    margin-top: 20px; /* Adds margin to the top */
+}
         .question {
             margin-bottom: 20px;
         }
@@ -43,14 +67,24 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .button {
+            margin-top: 20px;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 2px;
+        
+        }
     </style>
 </head>
 <body>
-    <h1>Eating Disorder Screening</h1>
+    
     <form id="screeningForm">
         <!-- Question 1 -->
+        <h1><pre>                                   SHORT SCREENING</pre> </h1>
         <div class="question">
-            <label for="q1">1. How often have you eaten what other people would regard as an unusually large amount of food given the circumstances?</label><br>
+            
+           <h3>1. How often have you eaten what other people would regard as an unusually large amount of food given the circumstances?</h3><br>
             <input type="radio" name="q1" value="0" required> Never<br>
             <input type="radio" name="q1" value="1"> Less than once a month<br>
             <input type="radio" name="q1" value="2"> Once a month<br>
@@ -62,7 +96,7 @@
         
         <!-- Question 2 -->
         <div class="question">
-            <label for="q2">2. How often have you had a sense of loss of control over eating (at the time you were eating)?</label><br>
+            <h3>2. How often have you had a sense of loss of control over eating (at the time you were eating)?</h3><br>
             <input type="radio" name="q2" value="0" required> Never<br>
             <input type="radio" name="q2" value="1"> Less than once a month<br>
             <input type="radio" name="q2" value="2"> Once a month<br>
@@ -86,7 +120,7 @@
         
         <!-- Question 4 -->
         <div class="question">
-            <label for="q4">4. How often have you exercised in a "driven" or "compulsive" way as a means of controlling your weight, shape, or amount of fat, or to burn off calories?</label><br>
+            <h3>4. How often have you exercised in a "driven" or "compulsive" way as a means of controlling your weight, shape, or amount of fat, or to burn off calories?</h3><br>
             <input type="radio" name="q4" value="0" required> Never<br>
             <input type="radio" name="q4" value="1"> Less than once a month<br>
             <input type="radio" name="q4" value="2"> Once a month<br>
@@ -98,7 +132,7 @@
         
         <!-- Question 5 -->
         <div class="question">
-            <label for="q5">5. How often have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?</label><br>
+            <h3>5. How often have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?</label><br></h3>
             <input type="radio" name="q5" value="0" required> Never<br>
             <input type="radio" name="q5" value="1"> Less than once a month<br>
             <input type="radio" name="q5" value="2"> Once a month<br>
@@ -110,7 +144,7 @@
         
         <!-- Question 6 -->
         <div class="question">
-            <label for="q6">6. How dissatisfied have you been with your weight?</label><br>
+            <h3>6. How dissatisfied have you been with your weight?<br></h3>
             <input type="radio" name="q6" value="0" required> Not at all<br>
             <input type="radio" name="q6" value="1"> Slightly<br>
             <input type="radio" name="q6" value="2"> Moderately<br>
@@ -120,7 +154,7 @@
         
         <!-- Question 7 -->
         <div class="question">
-            <label for="q7">7. How dissatisfied have you been with your shape?</label><br>
+            <h3>7. How dissatisfied have you been with your shape?</h3><br>
             <input type="radio" name="q7" value="0" required> Not at all<br>
             <input type="radio" name="q7" value="1"> Slightly<br>
             <input type="radio" name="q7" value="2"> Moderately<br>
@@ -130,7 +164,7 @@
         
         <!-- Question 8 -->
         <div class="question">
-            <label for="q8">8. How fearful have you been of gaining weight?</label><br>
+            <h3>8. How fearful have you been of gaining weight?</h3><br>
             <input type="radio" name="q8" value="0" required> Not at all<br>
             <input type="radio" name="q8" value="1"> Slightly<br>
             <input type="radio" name="q8" value="2"> Moderately<br>
@@ -140,7 +174,7 @@
         
         <!-- Question 9 -->
         <div class="question">
-            <label for="q9">9. How distressed or upset have you been about binge eating episodes?</label><br>
+            <h3>9. How distressed or upset have you been about binge eating episodes?</h3><br>
             <input type="radio" name="q9" value="0" required> Not at all<br>
             <input type="radio" name="q9" value="1"> Slightly<br>
             <input type="radio" name="q9" value="2"> Moderately<br>
@@ -148,7 +182,7 @@
             <input type="radio" name="q9" value="4"> Extremely<br>
         </div>
         
-        <button type="button" onclick="calculateResult()">Submit</button>
+        <center><button class="button" onclick="calculateResult()">Submit</button></center>
     </form>
 
     <!-- The Modal -->
