@@ -98,7 +98,6 @@
       }
       .card {
         width: 18rem;
-        border-radius: 20px;
       }
       .modal-dialog {
         max-width: 500px;
@@ -161,7 +160,7 @@
         </button>
       </div>
       <hr class="divider" />
-      <div class="filler-text">Add a meal for today</div>
+      <div class="filler-text">Start by adding a meal</div>
       <div class="card-container mt-4" id="mealLogs">
         <!-- Meal logs will be displayed here -->
       </div>
@@ -331,8 +330,7 @@
                   <option>Outdoors</option>
                 </select>
               </div>
-
-              <button type="submit" class="btn btn-primary">Save Meal</button>
+              <button type="submit" class="btn btn-primary">Save Log</button>
             </form>
           </div>
         </div>
@@ -343,112 +341,79 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+      document
+        .getElementById("mealForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const mealType = document.getElementById("mealType").value;
+          const feeling = document.getElementById("feeling").value;
+          const overeat = document.querySelector(
+            'input[name="overeat"]:checked'
+          ).value;
+          const undereat = document.querySelector(
+            'input[name="undereat"]:checked'
+          ).value;
+          const binge = document.querySelector(
+            'input[name="binge"]:checked'
+          ).value;
+          const restrict = document.querySelector(
+            'input[name="restrict"]:checked'
+          ).value;
+          const eatWith = document.getElementById("eatWith").value;
+
+          const mealLog = {
+            meal_type: mealType,
+            feeling: feeling,
+            overeating: overeat,
+            undereating: undereat,
+            urge_to_binge: binge,
+            urge_to_restrict: restrict,
+            eat_with: eatWith,
+          };
+
+          // Send the meal log to the backend
+          fetch("/add_meal_log", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(mealLog),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              addMealLogToPlanner(data);
+              $("#mealModal").modal("hide");
+              document.getElementById("mealForm").reset();
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+
+      function addMealLogToPlanner(log) {
+        const logCard = `
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${log.meal_type}</h5>
+                <p class="card-text">Feeling: ${log.feeling}</p>
+                <p class="card-text">Overeat: ${log.overeating}</p>
+                <p class="card-text">Undereat: ${log.undereating}</p>
+                <p class="card-text">Urge to binge: ${log.urge_to_binge}</p>
+                <p class="card-text">Urge to restrict: ${log.urge_to_restrict}</p>
+                <p class="card-text">Ate with: ${log.eat_with}</p>
+              </div>
+            </div>
+          `;
+        document.getElementById("mealLogs").innerHTML += logCard;
+      }
+
+      // Fetch meal logs when the page loads
       document.addEventListener("DOMContentLoaded", function () {
-        const mealOrder = [
-          "Breakfast",
-          "Morning Snack",
-          "Lunch",
-          "Afternoon Snack",
-          "Dinner",
-          "Evening Snack",
-          "Late Night Snack",
-          "Unplanned Snack",
-        ];
-
-        const mealLogsContainer = document.getElementById("mealLogs");
-
-        function getFormattedDate() {
-          const date = new Date();
-          return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
-        }
-
-        function loadMealLogs() {
-          const today = getFormattedDate();
-          const logs = JSON.parse(localStorage.getItem("mealLogs")) || {};
-          if (logs.date !== today) {
-            localStorage.removeItem("mealLogs");
-            return {};
-          }
-          return logs.meals || {};
-        }
-
-        function saveMealLogs(logs) {
-          const today = getFormattedDate();
-          localStorage.setItem(
-            "mealLogs",
-            JSON.stringify({ date: today, meals: logs })
-          );
-        }
-
-        function renderMealLogs() {
-          const logs = loadMealLogs();
-          mealLogsContainer.innerHTML = "";
-
-          mealOrder.forEach((mealType) => {
-            if (logs[mealType]) {
-              const cardHtml = `
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">${mealType}</h5>
-                    <hr class="divider">
-                    <p class="card-text">Congrats you have logged the meal for ${mealType}</p>
-                    <button class="btn btn-secondary show-more-btn">Show More</button>
-                    <div class="card-details" style="display: none;">
-                      <p><strong>Feeling:</strong> ${logs[mealType].feeling}</p>
-                      <p><strong>Overeat:</strong> ${logs[mealType].overeat}</p>
-                      <p><strong>Undereat:</strong> ${logs[mealType].undereat}</p>
-                      <p><strong>Binge:</strong> ${logs[mealType].binge}</p>
-                      <p><strong>Restricted:</strong> ${logs[mealType].restrict}</p>
-                      <p><strong>Ate With:</strong> ${logs[mealType].eatWith}</p>
-                    </div>
-                  </div>
-                </div>
-              `;
-              mealLogsContainer.insertAdjacentHTML("beforeend", cardHtml);
-            }
-          });
-
-          const showMoreBtns = document.querySelectorAll(".show-more-btn");
-          showMoreBtns.forEach((btn) => {
-            btn.addEventListener("click", function () {
-              const cardDetails = this.nextElementSibling;
-              if (cardDetails.style.display === "none") {
-                cardDetails.style.display = "block";
-                this.textContent = "Show Less";
-              } else {
-                cardDetails.style.display = "none";
-                this.textContent = "Show More";
-              }
-            });
-          });
-        }
-
-        document
-          .getElementById("mealForm")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            const mealType = document.getElementById("mealType").value;
-            const feeling = document.getElementById("feeling").value;
-            const overeat = document.querySelector(
-              'input[name="overeat"]:checked'
-            ).value;
-            const undereat = document.querySelector(
-              'input[name="undereat"]:checked'
-            ).value;
-            const binge = document.querySelector(
-              'input[name="binge"]:checked'
-            ).value;
-
-            const logs = loadMealLogs();
-            logs[mealType] = { feeling, overeat, undereat, binge };
-            saveMealLogs(logs);
-            renderMealLogs();
-
-            $("#mealModal").modal("hide");
-            document.getElementById("mealForm").reset();
-          });
-
-        renderMealLogs();
+        fetch("/get_meal_logs")
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((log) => addMealLogToPlanner(log));
+          })
+          .catch((error) => console.error("Error:", error));
       });
     </script>
   </body>
