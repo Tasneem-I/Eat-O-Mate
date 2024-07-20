@@ -176,6 +176,47 @@ def distract():
     return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
   
+@app.route("/add_meal_log", methods=["POST"])
+@login_required
+def add_meal_log():
+    data = request.get_json()
+    new_log = MealLog(
+        user_id=current_user.id,
+        meal_type=data["meal_type"],
+        feeling=data["feeling"],
+        overeating=data["overeating"],
+        undereating=data["undereating"],
+        urge_to_binge=data["urge_to_binge"],
+        urge_to_restrict=data["urge_to_restrict"],
+        eat_with=data["eat_with"]
+    )
+    db.session.add(new_log)
+    db.session.commit()
+    return jsonify({
+        "meal_type": new_log.meal_type,
+        "feeling": new_log.feeling,
+        "overeating": new_log.overeating,
+        "undereating": new_log.undereating,
+        "urge_to_binge": new_log.urge_to_binge,
+        "urge_to_restrict": new_log.urge_to_restrict,
+        "eat_with": new_log.eat_with
+    })
+
+@app.route("/get_meal_logs", methods=["GET"])
+@login_required
+def get_meal_logs():
+    logs = MealLog.query.filter_by(user_id=current_user.id).all()
+    return jsonify([
+        {
+            "meal_type": log.meal_type,
+            "feeling": log.feeling,
+            "overeating": log.overeating,
+            "undereating": log.undereating,
+            "urge_to_binge": log.urge_to_binge,
+            "urge_to_restrict": log.urge_to_restrict,
+            "eat_with": log.eat_with
+        } for log in logs
+    ])
 
 
 
