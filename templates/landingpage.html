@@ -8,21 +8,26 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            min-height: 100vh;
             margin: 0;
-            background: url('assets/img.png') no-repeat center center;
+            background: url('/assets/img.png') no-repeat center center;
             background-size: cover;
             font-family: Arial, sans-serif;
+            overflow-y: auto;
         }
 
         .container {
+            margin-top: 20%;
             text-align: center;
+            margin: 20px;
+            max-width: 800px;
         }
 
         .logo {
             height: 350px;
             width: 350px;
+            margin-top: 15%;
             margin-bottom: 20px;
             opacity: 0;
             animation: fadeInLogo 2s forwards;
@@ -46,7 +51,7 @@
         }
 
         .login-button {
-            padding: 10px 40px; /* Increased width by increasing horizontal padding */
+            padding: 10px 40px;
             font-size: 1em;
             cursor: pointer;
             color: white;
@@ -55,6 +60,75 @@
             border-radius: 10px;
             opacity: 0;
             animation: fadeInButton 2s forwards 4s;
+        }
+
+        .signup-button {
+            padding: 10px 40px;
+            font-size: 1em;
+            cursor: pointer;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeInButton 2s forwards 16s;
+        }
+
+        
+
+        .social {
+            font-size: 2em;
+            font-family: didot, serif;
+            color: #53655c;
+            margin-top: 20px;
+            opacity: 0;
+        }
+
+        .social1 { animation: fadeInText 2s forwards 6s; }
+        .social2 { animation: fadeInText 2s forwards 8s; }
+        .social3 { animation: fadeInText 2s forwards 10s; }
+        .social4 { animation: fadeInText 2s forwards 12s; }
+        .social5 { animation: fadeInText 2s forwards 14s; }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+            opacity: 0;
+            animation: fadeInCard 2s forwards 16s;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #53655c;
+            font-family: luminari, fantasy;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #333;
+        }
+
+        .more-details-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #53655c;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
         }
 
         @keyframes fadeInLogo {
@@ -89,18 +163,81 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <br><br><br><br>
     <div class="container">
         <img src="/assets/image.png" alt="Logo" class="logo">
         <br><br>
         <div class="title">&nbsp;EAT-O-MATE</div><br>
         <div class="quote">&nbsp;"We Help Your Life Healthier Every Day"</div><br>
         <button class="login-button">Login</button>
+        <br><br><br><br><br><br><br>
+        <img src="/assets/fact.gif" class="d-block w-100" style="height: 600px;">
+        <div class="social social1">
+            <br>
+            It's essential to seek help from healthcare providers specializing in eating disorders, such as psychologists, psychiatrists, and nutritionists. Therapies like cognitive-behavioral therapy (CBT) have proven effective in managing these conditions.
+        </div>
+        <br><br>
+        <div class="social social2">
+            Public education is vital in dispelling myths and reducing stigma surrounding eating disorders. These disorders are often misunderstood, stemming from deeper emotional issues rather than just concerns about food or weight.
+        </div>
+        <br><br>
+        <div class="social social3">
+            By increasing awareness and promoting media literacy, we can challenge harmful stereotypes and encourage a healthier perspective on body image and mental health. Creating supportive environments at home, school, and work is crucial.
+        </div>
+        <br><br>
+        <div class="social social4">
+            Advocacy for inclusive care is also important, ensuring that everyone, including transgender individuals who may experience eating disorders tied to body dysphoria, receives appropriate and affirming support.
+        </div>
+        <br><br>
+        <div class="social social5">
+            Promoting healthy coping mechanisms, body positivity, and self-acceptance is essential in empowering individuals on their recovery journey.
+        </div>
+        <div class="card">
+            <h2>Anorexia Nervosa</h2>
+            <img src="/assets/anorexia.png" >
+            <p>People with anorexia place a high value on controlling their weight and shape, using extreme efforts that tend to significantly interfere with their lives.</p><center>
+            <a href="details.html" class="more-details-button">More Details</a></center>
+        </div>
+        <div class="card">
+            <h2>Bulimia Nervosa</h2>
+            <img src="/assets/bulimia.png" >
+            <p>A serious eating disorder marked by bingeing, followed by methods to avoid weight gain.</p><center>
+            <a href="details.html" class="more-details-button">More Details</a></center>
+        </div>
+        <div class="card">
+            <h2>Binge Eating Disorder</h2>
+            <img src="/assets/binge.png" >
+            <p>People with this condition often don't feel able to stop eating and may eat larger than usual amounts of food.</p><center>
+            <a href="details.html" class="more-details-button">More Details</a></center>
+        </div>
+        <div class="card">
+            <h2>Avoidant/Restrictive Food Intake Disorder</h2>
+            <img src="/assets/avoidant.png" >
+            <p>Eating disorder in which individuals significantly limit the volume or variety of foods they consume due to the sensory characteristics of food (appearance, smell, texture, or taste); fears of choking or vomiting</p><center>
+            <a href="details.html" class="more-details-button">More Details</a></center>
+            <br><br>
+        </div>
+        <div class="signup"><br><br><br><center><a href="details.html" class="signup-button">Signup</a></center>
+        </div>
+        
     </div>
 </body>
 </html>
+
 
 
 
