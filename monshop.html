@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee
+1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MONSHOP-EATOMATE</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6h
+W+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #edf6f9; /* Set the background color for the body */
+      }
+      .navbar {
+        background: #53655c;
+        font-family: PaleCornflowerBlue;s
+        padding: 10px 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+      }
+      .logo a {
+        font-size: 35px;
+        font-weight: 600;
+        color: #285430;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        text-decoration: none;
+      }
+      .nav-links a {
+        color: #894949;
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 60px;
+        margin-left: 60px;
+        text-decoration: none;
+      }
+      .button-wrapper {
+        display: flex;
+        align-items: center;
+      }
+      button {
+        background-color: #e8d7c7;
+        margin-left: 7px;
+        border-radius: 20px;
+        padding: 20px;
+        width: 90px;
+      }
+      button a {
+        color: #6d7a71;
+        font-weight: bold;
+        font-size: 15px;
+        text-decoration: none;
+      }
+
+      hr.dashed {
+        border: none;
+        border-top: 10px dashed brown;
+        height: 0;
+        margin: 20px 0;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Adjusted to space between */
+        margin-bottom: 20px; /* Add margin between containers */
+        background-color: white; /* Set background color to white */
+        padding: 20px; /* Added padding */
+      }
+      .image {
+        margin-left: 20px; /* Adjusted to space between */
+        float: right; /* Float image to the right */
+      }
+      .image img {
+        max-width: 100%;
+        max-height: 500px; /* Set maximum height for the image */
+      }
+      .text {
+        font-size: 20px;
+        color: black;
+        max-width: 50%; /* Adjusted width */
+        text-align: justify; /* Justify text */
+        margin-right: 20px; /* Add margin between text and first image */
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      footer {
+        background-color: #83c5be;
+      }
+      .footerContainer {
+        width: 100%;
+        padding: 70px 70px 70px;
+      }
+      .footerNav {
+        margin: 30px 0;
+      }
+      .footerNav ul {
+        display: flex;
+        justify-content: center;
+      }
+      .footerNav ul {
+        list-style: none;
+      }
+      .footerNav ul li a {
+        color: black;
+        margin: 40px;
+        text-decoration: none;
+        font-size: 0.5ms;
+        opacity: 0.7;
+        transition: 0.5s;
+      }
+      .footerNav ul li a:hover {
+        opacity: 1;
+      }
+      .footerBottom {
+        background-color: #83c5be;
+        padding: 20px;
+        text-align: center;
+      }
+      hr.gradient {
+        border: none;
+        background: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+        height: 2px;
+        margin: 20px 0;
+      }
+
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center; /* Align items within the flexbox vertically */
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .card {
+        width: 18rem;
+        margin: 10px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .card img {
+        height: 250px;
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 250px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+      }
+      .card-body h5,
+      .card-body p {
+        margin: 5px 0;
+      }
+      .card-body button {
+        margin-top: 10px;
+        background-color: #83c5be;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+      .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" style="background-color: #83c5be">
+      <div class="logo">
+        <a href="#">
+          <img
+            src="/assets/image.png"
+            alt="LOGO"
+            style="height: 50px; margin-right: 10px"
+          />
+          EATO MATE
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/" style="color: whitesmoke">HOME</a>
+        <a href="/tracker" style="color: whitesmoke">MEAL LOG</a>
+        <a href="/shop" style="color: whitesmoke">MON SHOP</a>
+        <a href="#" style="color: whitesmoke">{{ points }}</a>
+      </div>
+    </nav>
+    <br />
+    <h1 style="margin-top: 50px; margin-bottom: 50px;"><center>TIME FOR SHOPPING</center></h1>
+    <div class="container">
+      <div class="text">
+        <p>
+          Welcome to Eato Mate's Pet Shop! Here, you can exchange your nurture stars to get yourselves some cute Eatimons from our collection. As
+          the saying goes,<br /><br /> <b>"Gotta catch 'em all!".</b><br /><br />Eatimons are classified on the basis of their rarity into 5 categories : <br />1.
+          Common<br />
+          2. Rare<br />
+          3. Epic<br />
+          4. Legendary<br />
+          5. Extinct <br />
+          So what are you waiting for? Exchange your nurture stars and take home
+          some of the cutest pets!<br /><br /><i>If you find yourself running low on points, don't worry! You can easily earn Nurture Stars by <b>logging your meals</b> and using the<b> distraction tab anytime. Stay on track and keep earning!</i
+          >
+        </p>
+      </div>
+      <img
+        class="image"
+        src="/assets/giphy.webp"
+        alt="Description of the gif"
+      />
+    </div>
+
+<h1 style="margin-top: 150px; margin-bottom: 50px;"><center>EATIMONS</center></h1>
+<div class="card-container">
+<div class="card">
+<img src="/assets/fuzzlet.jpeg" class="card-img-top" alt="Fluzzlet">
+<div class="card-body">
+<h5 class="card-title">Fluzzlet</h5>
+<p class="card-text">Rank: Common</p>
+<p class="card-text">Cost: 160 points</p>
+<form action="\buy_mon" method="post">
+  
+  <input type="hidden" name="mon_id" value= 1>
+<button data-mon-id=1 class="btn btn-primary">Buy</button></form>
+</div>
+</div>
+
+<div class="card">
+<img src="/assets/twinklefuft.jpeg" class="card-img-top" alt="Twinkle Tuft">
+<div class="card-body">
+<h5 class="card-title">Twinkle Tuft</h5>
+<p class="card-text">Rank: Common</p>
+<p class="card-text">Cost: 180 points</p>
+<form action="\buy_mon" method="post">
+  
+  <input type="hidden" name="mon_id" value= 2>
+<button data-mon-id=2 class="btn btn-primary" name="mon-id" value=2>Buy</button></form>
+</div>
+</div>
+
+<div class="card">
+  <img src="/assets/mysticmole.jpg" class="card-img-top" alt="Mystic Mole">
+  <div class="card-body">
+  <h5 class="card-title">Mystic Mole</h5>
+  <p class="card-text">Rank: Common</p>
+  <p class="card-text">Cost: 150 points</p>
+  <form action="\buy_mon" method="post">
+    <input type="hidden" name="mon_id" value= 3>
+  <button data-mon-id=3 class="btn btn-primary">Buy</button></form>
+  </div>
+  </div>
+
+
+<div class="card">
+  <img src="/assets/aurorapuff.jpg" class="card-img-top" alt="Aurora Puff">
+  <div class="card-body">
+  <h5 class="card-title">Aurora Puff</h5>
+  <p class="card-text">Rank: Rare</p>
+  <p class="card-text">Cost: 300 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 4>
+  <button data-mon-id=4 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/dewdrop.jpeg" class="card-img-top" alt="Dew Drop">
+  <div class="card-body">
+  <h5 class="card-title">Dew Drop</h5>
+  <p class="card-text">Rank: Rare</p>
+  <p class="card-text">Cost: 450 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 5>
+  <button data-mon-id=5 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/pixiepaw.jpeg" class="card-img-top" alt="Pixie Paw">
+  <div class="card-body">
+  <h5 class="card-title">Pixie Paw</h5>
+  <p class="card-text">Rank: Rare</p>
+  <p class="card-text">Cost: 250 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 6>
+  <button data-mon-id=6 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/luminpuff.jpeg" class="card-img-top" alt="Lumin Puff">
+  <div class="card-body">
+  <h5 class="card-title">Lumin Puff</h5>
+  <p class="card-text">Rank: Epic</p>
+  <p class="card-text">Cost: 600 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 7>
+  <button data-mon-id=7 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/faefox.jpeg" class="card-img-top" alt="Fae Fox">
+  <div class="card-body">
+  <h5 class="card-title">Fae Fox</h5>
+  <p class="card-text">Rank: Epic</p>
+  <p class="card-text">Cost: 500 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 8>
+  <button data-mon-id=8 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/moonwhisk.jpeg" class="card-img-top" alt="Moon Whisk">
+  <div class="card-body">
+  <h5 class="card-title">Moon Whisk</h5>
+  <p class="card-text">Rank: Legendary</p>
+  <p class="card-text">Cost: 800 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 9>
+  <button data-mon-id=9 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/nebulaelder.jpg" class="card-img-top" alt="Nebula Elder">
+  <div class="card-body">
+  <h5 class="card-title">Nebula Elder</h5>
+  <p class="card-text">Rank: Legendary</p>
+  <p class="card-text">Cost: 770 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 10>
+  <button data-mon-id=10 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/whimsybee.jpeg" class="card-img-top" alt="Whimsy Bee">
+  <div class="card-body">
+  <h5 class="card-title">Whimsy Bee</h5>
+  <p class="card-text">Rank: Legendary</p>
+  <p class="card-text">Cost: 890 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 11>
+  <button data-mon-id=11 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/Moonripple.jpeg" class="card-img-top" alt="Moon Ripple">
+  <div class="card-body">
+  <h5 class="card-title">Moon Ripple</h5>
+  <p class="card-text">Rank: Extinct</p>
+  <p class="card-text">Cost: 1200 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 12>
+  <button data-mon-id=12 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/glimmerlynx.jpeg" class="card-img-top" alt="Glimmer Lynx">
+  <div class="card-body">
+  <h5 class="card-title">Glimmer Lynx</h5>
+  <p class="card-text">Rank: Extinct</p>
+  <p class="card-text">Cost: 2000 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 13>
+  <button data-mon-id=13 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+
+<div class="card">
+  <img src="/assets/frostwhisker.jpeg" class="card-img-top" alt="Frost Whisker">
+  <div class="card-body">
+  <h5 class="card-title">Frost Whisker</h5>
+  <p class="card-text">Rank: Extinct</p>
+  <p class="card-text">Cost: 1600 points</p>
+  <form action="\buy_mon" method="post">
+    
+    <input type="hidden" name="mon_id" value= 14>
+  <button data-mon-id=14 class="btn btn-primary">Buy</button></form>
+  </div>
+</div>
+</div>
+{% with messages = get_flashed_messages()%}
+    {% if messages%}
+<div class="popup" id="notEnoughPointsPopup" >
+  <div class="popup-content">
+    
+    {% for message in messages%}
+    <p>{{message}}</p>
+    {%endfor%}
+    
+    <button onclick="closePopup()" style="margin-top: 15px;">Close</button>
+    {%endif%}
+    {%endwith%}
+   
+  </div>
+</div>
+<script>
+  function closePopup() {
+    document.getElementById("notEnoughPointsPopup").style.display = "none";
+  }
+
+  // Add event listener to the buy button
+  document.querySelectorAll(".card-body button").forEach(button => {
+    button.addEventListener("click", function(event) {
+      // Get the mon ID and points needed from the current card
+      const monId = parseInt(this.dataset.monId);
+      const pointsNeeded = parseInt(
+        document
+          .querySelector(`.card[data-mon-id="${monId}"] .card-text:last-child`)
+          .textContent.split(" ")[1]
+      );
+
+      // Get the user's points from the navigation bar
+      const userPoints = parseInt(
+        document.querySelector(".nav-links a:last-child").textContent
+      );
+
+      // Check if user has enough points
+      if (userPoints < pointsNeeded) {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById("notEnoughPointsPopup").style.display = "block";
+      }
+    });
+  });
+</script>
+</body>
+</html>
