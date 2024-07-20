@@ -5,19 +5,85 @@
     <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distractions</title>
-    <script>
-        // Function to reload the image every 30 seconds
-        function reloadImage() {
-            document.getElementById('yogaImage').src = "{{ url_for('distract') }}";
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #d9e0e5, #f0f0f0); /* Gradient background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        // Call the reload function initially and then every 30 seconds
-        reloadImage();
-        setInterval(reloadImage, 30000);
-    </script>
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            width: 100%; /* Full width */
+            height: 80vh; /* Adjust height as needed */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .image-section {
+            flex: 1; /* Take up equal space */
+            margin-right: 20px; /* Add a space between sections */
+        }
+        
+        .camera-section {
+            flex: 1; /* Take up equal space */
+        }
+
+        #yogaImage {
+            width: 600px;
+            height: 465px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease; /* Add a smooth transition for hover */
+        }
+
+        #yogaImage:hover {
+            transform: scale(1.05); /* Slightly zoom on hover */
+        }
+
+        #video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
     <h1>Distraction Time!</h1>
-    <img id="yogaImage" src="{{ img }}" alt="Yoga Pose"> 
+    <div class="container">
+        <div class="image-section">
+            <img id="yogaImage" src="{{ img }}" alt="Yoga Pose">
+        </div>
+        <div class="camera-section">
+            <video id="video" autoplay></video>
+        </div>
+    </div>
+
+    <script>
+        // Get a reference to the video element
+        const video = document.getElementById('video'); 
+
+        // Request access to the webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            // Set the video element's source to the stream
+            video.srcObject = stream; 
+            // Start the video playback
+            video.play();
+          })
+          .catch(err => {
+            console.error("Error accessing webcam:", err);
+          });
+    </script>
 </body>
 </html>
