@@ -87,6 +87,7 @@
         padding: 20px;
         width: 85%;
         margin: 0 auto;
+        font-family: Georgia, "Times New Roman", Times, serif;
       }
       .planner-header {
         display: flex;
@@ -132,9 +133,12 @@
       }
       .modal-body {
         padding: 20px;
+        font-family: Georgia, "Times New Roman", Times, serif;
       }
       .modal-header {
         border-bottom: 1px solid #e5e5e5;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        weight: bold;
       }
       .modal-title {
         color: #333333; /* Dark gray text color */
@@ -166,6 +170,10 @@
         border: none !important; /* Keep border style consistent */
         box-shadow: none !important; /* Remove any focus or hover shadow */
       }
+      h1 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 35px;
+      }
     </style>
   </head>
   <body>
@@ -187,13 +195,14 @@
 
     <div class="intro-section">
       <h1 style="margin-top: 30px; margin-bottom: 30px">
-        Welcome to Your Meal Logger
+        <b>WELCOME TO YOUR MEAL LOGGER</b>
       </h1>
-      <div class="track-container" style="background-color: rgb(245, 212, 187);" >
-      {% if mc > 0 %}
-  <p>Total Normal Meals: {{ mc }}</p>
-  <p>Your normal meals were mostly eaten with: {{ ac }}</p>
-{% endif %}</div>
+      <div class="track-container" style="background-color: rgb(245, 212, 187)">
+        {% if mc > 0 %}
+        <p>Total Normal Meals: {{ mc }}</p>
+        <p>Your normal meals were mostly eaten with: {{ ac }}</p>
+        {% endif %}
+      </div>
       <div class="track-container">
         <p>
           Track your meals and transform your eating habits with ease. As they
