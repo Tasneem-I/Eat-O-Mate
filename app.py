@@ -180,16 +180,17 @@ def buy_mon():
         flash("Not enough points, collect more points by completing quests")
     return redirect(url_for('shop'))
 
-@app.route('/meal_log')
+@app.route('/meallog')
 @login_required
 def meal_log():
-    normal_meals = MealLog.query.filter_by(user_id=current_user.id, meal_type='normal').all()
+    pts = current_user.points
+    normal_meals = MealLog.query.filter_by(user_id=current_user.id, overeating="No", undereating="No").all()
     normal_meal_count = len(normal_meals)
     eat_with_counts = {}
     for meal in normal_meals:
         eat_with_counts[meal.eat_with] = eat_with_counts.get(meal.eat_with, 0) + 1
     most_common_eat_with =eat_with_counts and max(eat_with_counts, key=eat_with_counts.get) or 0
-    return render_template('meal.html', mc=normal_meal_count, ac=most_common_eat_with)
+    return render_template('meallog.html', mc=normal_meal_count, ac=most_common_eat_with, points=pts)
 
 
 @app.route('/distract', methods=["GET", "POST"])
@@ -209,11 +210,7 @@ def distract_session():
     return render_template('/distractions.html', img = img, points=pts), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
 
-@app.route('/meallog')
-@login_required
-def meallog():
-    pts = current_user.points
-    return render_template("meallog.html",points=pts)
+
 @app.route("/add_meal_log", methods=["POST"])
 @login_required
 def add_meal_log():
