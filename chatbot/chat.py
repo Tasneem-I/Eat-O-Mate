@@ -1,10 +1,8 @@
+
 import streamlit as st
-from dotenv import load_dotenv
-import streamlit as st
-import os
+
 import google.generativeai as ggi
 
-load_dotenv(".env")
 st.set_page_config(page_title="Tarry from Eat-O-Mate", page_icon="https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png?raw=true")
 st.markdown(
     """
@@ -18,7 +16,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-fetcheed_api_key = os.getenv("API_KEY")
 ggi.configure(api_key = "AIzaSyBmlUKVyw3eHkW0wjyLhcvLBnGT9MP_EmI")
 
 model = ggi.GenerativeModel("gemini-pro") 
