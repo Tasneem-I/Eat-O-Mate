@@ -180,56 +180,16 @@ def buy_mon():
         flash("Not enough points, collect more points by completing quests")
     return redirect(url_for('shop'))
 
-'''@app.route('/meallog')
+@app.route('/meal_log')
 @login_required
 def meal_log():
-
-    normal_meal_criteria = and_(
-        MealLog.overeating == "False",
-        MealLog.undereating == "False",
-        MealLog.urge_to_binge == "False",
-        MealLog.urge_to_restrict == "False"
-    )
-
-    normal_meals_subquery = (
-        db.session.query(
-            MealLog.userid,
-            func.count(MealLog.id).label('normal_meal_count')
-        ).filter(
-            normal_meal_criteria
-        ).group_by(MealLog.userid).subquery()
-    )
-
-    combined_results = db.session.query(
-        normal_meals_subquery.c.userid,
-        normal_meals_subquery.c.normal_meal_count,
-        MealLog.eat_with,
-        func.count(MealLog.id).label('times_eaten_with')
-    ).outerjoin(
-        normal_meals_subquery,
-        normal_meals_subquery.c.userid == MealLog.userid
-    ).filter(
-        normal_meal_criteria
-    ).group_by(
-        normal_meals_subquery.c.userid, MealLog.eat_with
-    ).order_by(
-        normal_meals_subquery.c.userid, func.count(MealLog.id).desc()
-    ).all()
-
-    results = {}
-    for row in combined_results:
-        userid, normal_meal_count, eat_with, times_eaten_with = row
-        if userid not in results:
-            results[userid] = {
-                'normal_meal_count': normal_meal_count,
-                'eat_with_most': {
-                    'eat_with': eat_with, 
-                    'times_eaten_with': times_eaten_with
-                } if eat_with else None
-            }
-
-    return render_template('normal_meals.html', results=results)'''
-
+    normal_meals = MealLog.query.filter_by(user_id=current_user.id, meal_type='normal').all()
+    normal_meal_count = len(normal_meals)
+    eat_with_counts = {}
+    for meal in normal_meals:
+        eat_with_counts[meal.eat_with] = eat_with_counts.get(meal.eat_with, 0) + 1
+    most_common_eat_with =eat_with_counts and max(eat_with_counts, key=eat_with_counts.get) or 0
+    return render_template('meal.html', mc=normal_meal_count, ac=most_common_eat_with)
 
 
 @app.route('/distract', methods=["GET", "POST"])
