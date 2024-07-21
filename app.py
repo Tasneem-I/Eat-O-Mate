@@ -142,7 +142,7 @@ points=points)
         db.session.commit()
         points = user.points
         login_user(user)
-        return redirect(url_for("meallog"))
+        return redirect(url_for("homes"))
     return render_template("signup.html")
 
 
