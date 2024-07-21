@@ -155,7 +155,7 @@ def login():
             session["user_id"] = user.id
             session["user"]= user.points
             logins= True
-            return render_template("meallog.html", login=logins, points= user.points)
+            return render_template("feature.html", login=logins, points= user.points)
     return render_template("login.html")
 
 @app.route("/shop")
