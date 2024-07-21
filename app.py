@@ -237,7 +237,7 @@ def add_meal_log():
     })
 
 @app.route("/get_meal_logs", methods=["GET"])
-@login_required
+#@login_required
 def get_meal_logs():
     logs = MealLog.query.filter_by(user_id=current_user.id).all()
     return jsonify([

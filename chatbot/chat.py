@@ -5,6 +5,18 @@ import os
 import google.generativeai as ggi
 
 load_dotenv(".env")
+st.set_page_config(page_title="Tarry from Eat-O-Mate", page_icon="https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png?raw=true")
+st.markdown(
+    """
+    <style>
+    .reportview-container {
+        background: url("img.png")
+    }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 fetcheed_api_key = os.getenv("API_KEY")
 ggi.configure(api_key = "AIzaSyBmlUKVyw3eHkW0wjyLhcvLBnGT9MP_EmI")
@@ -28,7 +40,7 @@ for role, message in st.session_state.chat_history:
             <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px;'>
                 {message}
             </div>
-            <img src='https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png' style='border-radius: 50%; margin-left: 10px;' />
+            <img src='https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png?raw=true' style='border-radius: 50%; margin-left: 10px;' />
         </div>
         """, unsafe_allow_html=True)
     else:

@@ -18,7 +18,7 @@
         }
 
         h1 {
-            color: #333;
+            color: white;;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -56,11 +56,93 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            margin-top: 0.8%;
+            
+        }
+
+        .back-button img {
+            width: 30px; /* Adjust the size as needed */
+            height: 30px;
+        }
+        .text-cont {
+            background-color: cadetblue;
+            width: 100%;
+            color: white;    /* Enable Flexbox layout */
+  
+        }
+        #timerbox {
+            margin-top: 1.5%;
+            margin-bottom: 0.5%;
+        }
+        #timer-box {
+  background-color: cadetblue; /* Light gray background */
+  border: 3px solid #060000; 
+  color:white;    /* Thin gray border */
+  padding: 8px;  
+  width: 15%;
+  margin-top: 2%;          /* Add some padding around the timer */
+  text-align: center; 
+  border-radius: 20px;      /* Center the timer text */
+}
+
+#countdown {
+  font-size: 36px;        /* Make the timer text larger */
+  font-weight: bold;      /* Make the timer text bold */
+}
+.start-button {
+        background-color: #e8d7c7;
+        margin-left: 7px;
+        border-radius: 20px;
+        padding: 20px;
+        width: 10%;
+      }
+      button a {
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .text-cont {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ .text-cont h1 {
+    margin-left: 40%;
+    color: #060000;
+ }
+.back-button img {
+    width: 24px;
+    height: 24px;
+}
+
+
+.start-button a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+
+
     </style>
 </head>
 <body>
-    <h1>Distraction Time!</h1>
-    <div id="countdown"></div>
+    <div class="text-cont">
+        <a href="/distract" class="back-button">
+            <img src="/static/back-icon.png" alt="Back">
+        </a>
+        <h1>Distraction Time!</h1>
+        <button type="submit" class="start-button" onclick="submitForm()" style="width: 10%; font-size:large; margin-left: 20%;width: 15%;"><b><a href="/distract">End Session</a></b></button>
+        
+    </div>
+    <div id="timer-box">
+        <span id="countdown">00:10</span> 
+      </div>
     <div class="container">
         <div class="image-section">
             <img id="yogaImage" src="{{ img }}" alt="Yoga Pose">
@@ -87,15 +169,26 @@
           });
 
           var timeleft = 10;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
+var downloadTimer = setInterval(function() {
+  if (timeleft <= 0) {
     clearInterval(downloadTimer);
     document.getElementById("countdown").innerHTML = "Finished";
   } else {
-    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+    // Calculate minutes and seconds
+    var minutes = Math.floor(timeleft / 60);
+    var seconds = timeleft % 60;
+
+    // Pad with zeros for formatting
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("countdown").innerHTML = minutes + ":" + seconds; 
   }
   timeleft -= 1;
 }, 1000);
+function submitForm() {
+            document.getElementById('distractForm').submit();
+        }
     </script>
 </body>
 </html>
