@@ -3,152 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eating Disorder Questionnaire</title>
+    <title>Eating Disorder Screening</title>
     <style>
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    background: url('/static/img.png') no-repeat center center fixed;
-    background-size: cover; /* Ensures the background image covers the entire screen */
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: flex-start; /* Aligns container to the top */
-    justify-content: center; /* Centers container horizontally */
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
-    overflow-y: auto; /* Allows vertical scrolling if needed */
-    padding-top: 20px; /* Adds padding to the top */
-}
-.container {
-    text-align: center; /* Centers text inside the container */
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background for readability */
-    border-radius: 8px; /* Rounds the corners of the container */
-    max-width: 90%; /* Adjust this value if needed */
-    max-height: 200vh; /* Ensures the container doesn’t exceed viewport height */
-    overflow: auto; /* Adds scrollbars if the content exceeds container size */
-    box-sizing: border-box; /* Ensures padding is included in the height */
-    margin-top: 20px; /* Adds margin to the top */
-}
-
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url('/static/img.png') no-repeat center center fixed;
+            background-size: cover; /* Ensures the background image covers the entire screen */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: flex-start; /* Aligns container to the top */
+            justify-content: center; /* Centers container horizontally */
+            overflow-x: auto; /* Allows horizontal scrolling if needed */
+            overflow-y: auto; /* Allows vertical scrolling if needed */
+            padding-top: 20px; /* Adds padding to the top */
+        }
+        .container {
+            text-align: left; /* Centers text inside the container */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background for readability */
+            border-radius: 8px; /* Rounds the corners of the container */
+            width: 90%; /* Adjust this value if needed */
+            height: 50vh; /* Ensures the container doesn’t exceed viewport height */
+            overflow: auto; /* Adds scrollbars if the content exceeds container size */
+            box-sizing: border-box; /* Ensures padding is included in the height */
+            margin-top: 15%; /* Adds margin to the top */
+        }
         .question {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .question label {
-            display: block;
-            margin: 5px 0;
-        }
-        .submit-button {
-            margin-top: 20px;
-            color: white;
-            background-color: #53655c;
-            border: none;
-            border-radius: 2px;
-        
-        }
+        /* Modal Container (for background overlay) */
         .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
-}
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+        }
 
-/* Modal Content */
-.modal-content {
-    background-color: #ffffff; /* White background for clarity */
-    margin: 10% auto; /* Center the modal vertically and horizontally */
-    padding: 20px;
-    border-radius: 12px; /* Rounded corners */
-    width: 20vw; /* Width of the modal */
-    height: 20vw; /* Height of the modal, set to the same as width */
-    max-width: 600px; /* Maximum width */
-    max-height: 600px; /* Maximum height */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    animation: fadeIn 0.3s ease-out; /* Fade-in animation */
-    position: relative; /* Position for the close button */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Modal Content */
+        .modal-content {
+            background-color: #ffffff; /* White background for clarity */
+            margin: 10% auto; /* Center the modal vertically and horizontally */
+            padding: 20px;
+            border-radius: 12px; /* Rounded corners */
+            width: 20vw; /* Width of the modal */
+            height: 20vw; /* Height of the modal, set to the same as width */
+            max-width: 600px; /* Maximum width */
+            max-height: 600px; /* Maximum height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            animation: fadeIn 0.3s ease-out; /* Fade-in animation */
+            position: relative; /* Position for the close button */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Close Button */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
+        /* Animation for Modal Fade-In */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.close:hover {
-    color: #ff5c5c; /* Change color on hover */
-}
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
 
-/* Modal Header */
-.modal-header {
-    border-bottom: 1px solid #ddd; /* Light border for header */
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
+        .close:hover {
+            color: #ff5c5c; /* Change color on hover */
+        }
+        .hidden {
+            display: none;
+        }
+        .button {
+            margin-top: 20px;
+            
+        }
+        /* Modal Header */
+        .modal-header {
+            border-bottom: 1px solid #ddd; /* Light border for header */
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
 
-.modal-header h2 {
-    margin: 0;
-    font-size: 1.5em;
-}
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
 
-/* Modal Body */
-.modal-body {
-    padding: 10px 0;
-    text-align: center; /* Center text inside modal */
-}
+        /* Modal Body */
+        .modal-body {
+            padding: 10px 0;
+            text-align: center; /* Center text inside modal */
+        }
 
-/* Modal Footer */
-.modal-footer {
-    border-top: 1px solid #ddd; /* Light border for footer */
-    padding-top: 10px;
-    text-align: right;
-}
+        /* Modal Footer */
+        .modal-footer {
+            border-top: 1px solid #ddd; /* Light border for footer */
+            padding-top: 10px;
+            text-align: right;
+        }
 
-.modal-footer button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease;
-}
+        .modal-footer button {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s ease;
+        }
 
-.modal-footer button:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
+        .modal-footer button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
 
         .button {
             margin-top: 20px;
@@ -156,241 +151,344 @@ body {
             background-color: #53655c;
             border: none;
             border-radius: 2px;
-        
+            padding: 10px 20px; /* Adjusted width */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        
+        .button:hover {
+            background-color: #43544a;
+        }
     </style>
 </head>
 <body>
-   
-    
-    <form id="questionnaire">
-        <!-- Anorexia Nervosa Questions -->
-        <div class="question"><br>
-            <h1><pre>          LONG SCREENING </pre></h1>
-            <h3>1. How often do you think about food and weight?</h3>
-            <label><input type="radio" name="q1" value="0" required> Never</label>
-            <label><input type="radio" name="q1" value="1"> Rarely</label>
-            <label><input type="radio" name="q1" value="2"> Sometimes</label>
-            <label><input type="radio" name="q1" value="3"> Often</label>
-            <label><input type="radio" name="q1" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>2. How often do you intentionally restrict your calorie intake?</h3>
-            <label><input type="radio" name="q2" value="0" required> Never</label>
-            <label><input type="radio" name="q2" value="1"> Rarely</label>
-            <label><input type="radio" name="q2" value="2"> Sometimes</label>
-            <label><input type="radio" name="q2" value="3"> Often</label>
-            <label><input type="radio" name="q2" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>3. How concerned are you about your body weight and shape?</h3>
-            <label><input type="radio" name="q3" value="0" required> Not at all concerned</label>
-            <label><input type="radio" name="q3" value="1"> Slightly concerned</label>
-            <label><input type="radio" name="q3" value="2"> Moderately concerned</label>
-            <label><input type="radio" name="q3" value="3"> Very concerned</label>
-            <label><input type="radio" name="q3" value="4"> Extremely concerned</label>
-        </div>
-        <div class="question">
-            <h3>4. How often do you avoid eating with others?</h3>
-            <label><input type="radio" name="q4" value="0" required> Never</label>
-            <label><input type="radio" name="q4" value="1"> Rarely</label>
-            <label><input type="radio" name="q4" value="2"> Sometimes</label>
-            <label><input type="radio" name="q4" value="3"> Often</label>
-            <label><input type="radio" name="q4" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>5. How often do you feel fat despite being told you're not?</h3>
-            <label><input type="radio" name="q5" value="0" required> Never</label>
-            <label><input type="radio" name="q5" value="1"> Rarely</label>
-            <label><input type="radio" name="q5" value="2"> Sometimes</label>
-            <label><input type="radio" name="q5" value="3"> Often</label>
-            <label><input type="radio" name="q5" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>6. How often do you exercise excessively to control your weight?</h3>
-            <label><input type="radio" name="q6" value="0" required> Never</label>
-            <label><input type="radio" name="q6" value="1"> Rarely</label>
-            <label><input type="radio" name="q6" value="2"> Sometimes</label>
-            <label><input type="radio" name="q6" value="3"> Often</label>
-            <label><input type="radio" name="q6" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>7. How often do you skip meals to lose weight?</h3>
-            <label><input type="radio" name="q7" value="0" required> Never</label>
-            <label><input type="radio" name="q7" value="1"> Rarely</label>
-            <label><input type="radio" name="q7" value="2"> Sometimes</label>
-            <label><input type="radio" name="q7" value="3"> Often</label>
-            <label><input type="radio" name="q7" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>8. How often do you use diet pills to lose weight?</h3>
-            <label><input type="radio" name="q8" value="0" required> Never</label>
-            <label><input type="radio" name="q8" value="1"> Rarely</label>
-            <label><input type="radio" name="q8" value="2"> Sometimes</label>
-            <label><input type="radio" name="q8" value="3"> Often</label>
-            <label><input type="radio" name="q8" value="4"> Very Often</label>
-        </div>
-        
-        <!-- Bulimia Nervosa Questions -->
-        <div class="question">
-            <h3>9. How often do you binge eat?</h3>
-            <label><input type="radio" name="q9" value="0" required> Never</label>
-            <label><input type="radio" name="q9" value="1"> Rarely</label>
-            <label><input type="radio" name="q9" value="2"> Sometimes</label>
-            <label><input type="radio" name="q9" value="3"> Often</label>
-            <label><input type="radio" name="q9" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>10. How often do you feel out of control while eating?</h3>
-            <label><input type="radio" name="q10" value="0" required> Never</label>
-            <label><input type="radio" name="q10" value="1"> Rarely</label>
-            <label><input type="radio" name="q10" value="2"> Sometimes</label>
-            <label><input type="radio" name="q10" value="3"> Often</label>
-            <label><input type="radio" name="q10" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>11. How often do you use compensatory behaviors (e.g., vomiting, excessive exercise) after eating?</h3>
-            <label><input type="radio" name="q11" value="0" required> Never</label>
-            <label><input type="radio" name="q11" value="1"> Rarely</label>
-            <label><input type="radio" name="q11" value="2"> Sometimes</label>
-            <label><input type="radio" name="q11" value="3"> Often</label>
-            <label><input type="radio" name="q11" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>12. How often do you eat until feeling uncomfortably full?</h3>
-            <label><input type="radio" name="q12" value="0" required> Never</label>
-            <label><input type="radio" name="q12" value="1"> Rarely</label>
-            <label><input type="radio" name="q12" value="2"> Sometimes</label>
-            <label><input type="radio" name="q12" value="3"> Often</label>
-            <label><input type="radio" name="q12" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>13. How often do you feel ashamed after eating?</h3>
-            <label><input type="radio" name="q13" value="0" required> Never</label>
-            <label><input type="radio" name="q13" value="1"> Rarely</label>
-            <label><input type="radio" name="q13" value="2"> Sometimes</label>
-            <label><input type="radio" name="q13" value="3"> Often</label>
-            <label><input type="radio" name="q13" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>14. How often do you eat alone because you feel embarrassed by how much you eat?</h3>
-            <label><input type="radio" name="q14" value="0" required> Never</label>
-            <label><input type="radio" name="q14" value="1"> Rarely</label>
-            <label><input type="radio" name="q14" value="2"> Sometimes</label>
-            <label><input type="radio" name="q14" value="3"> Often</label>
-            <label><input type="radio" name="q14" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>15. How often do you think about food even when you are not hungry?</h3>
-            <label><input type="radio" name="q15" value="0" required> Never</label>
-            <label><input type="radio" name="q15" value="1"> Rarely</label>
-            <label><input type="radio" name="q15" value="2"> Sometimes</label>
-            <label><input type="radio" name="q15" value="3"> Often</label>
-            <label><input type="radio" name="q15" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>16. How often do you try to hide food?</h3>
-            <label><input type="radio" name="q16" value="0" required> Never</label>
-            <label><input type="radio" name="q16" value="1"> Rarely</label>
-            <label><input type="radio" name="q16" value="2"> Sometimes</label>
-            <label><input type="radio" name="q16" value="3"> Often</label>
-            <label><input type="radio" name="q16" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>17. How often do you feel guilty after eating?</h3>
-            <label><input type="radio" name="q17" value="0" required> Never</label>
-            <label><input type="radio" name="q17" value="1"> Rarely</label>
-            <label><input type="radio" name="q17" value="2"> Sometimes</label>
-            <label><input type="radio" name="q17" value="3"> Often</label>
-            <label><input type="radio" name="q17" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>18. How often do you eat when feeling stressed or anxious?</h3>
-            <label><input type="radio" name="q18" value="0" required> Never</label>
-            <label><input type="radio" name="q18" value="1"> Rarely</label>
-            <label><input type="radio" name="q18" value="2"> Sometimes</label>
-            <label><input type="radio" name="q18" value="3"> Often</label>
-            <label><input type="radio" name="q18" value="4"> Very Often</label>
-        </div>
-        
-        <!-- Binge-Eating Disorder Questions -->
-        <div class="question">
-            <h3>19. How often do you eat large amounts of food when not physically hungry?</h3>
-            <label><input type="radio" name="q19" value="0" required> Never</label>
-            <label><input type="radio" name="q19" value="1"> Rarely</label>
-            <label><input type="radio" name="q19" value="2"> Sometimes</label>
-            <label><input type="radio" name="q19" value="3"> Often</label>
-            <label><input type="radio" name="q19" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>20. How often do you eat until you feel sick?</h3>
-            <label><input type="radio" name="q20" value="0" required> Never</label>
-            <label><input type="radio" name="q20" value="1"> Rarely</label>
-            <label><input type="radio" name="q20" value="2"> Sometimes</label>
-            <label><input type="radio" name="q20" value="3"> Often</label>
-            <label><input type="radio" name="q20" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>21. How often do you eat because you are lonely?</h3>
-            <label><input type="radio" name="q21" value="0" required> Never</label>
-            <label><input type="radio" name="q21" value="1"> Rarely</label>
-            <label><input type="radio" name="q21" value="2"> Sometimes</label>
-            <label><input type="radio" name="q21" value="3"> Often</label>
-            <label><input type="radio" name="q21" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>22. How often do you eat rapidly during binge episodes?</h3>
-            <label><input type="radio" name="q22" value="0" required> Never</label>
-            <label><input type="radio" name="q22" value="1"> Rarely</label>
-            <label><input type="radio" name="q22" value="2"> Sometimes</label>
-            <label><input type="radio" name="q22" value="3"> Often</label>
-            <label><input type="radio" name="q22" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>23. How often do you feel disgusted with yourself after eating?</h3>
-            <label><input type="radio" name="q23" value="0" required> Never</label>
-            <label><input type="radio" name="q23" value="1"> Rarely</label>
-            <label><input type="radio" name="q23" value="2"> Sometimes</label>
-            <label><input type="radio" name="q23" value="3"> Often</label>
-            <label><input type="radio" name="q23" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>24. How often do you feel unable to stop eating once you start?</h3>
-            <label><input type="radio" name="q24" value="0" required> Never</label>
-            <label><input type="radio" name="q24" value="1"> Rarely</label>
-            <label><input type="radio" name="q24" value="2"> Sometimes</label>
-            <label><input type="radio" name="q24" value="3"> Often</label>
-            <label><input type="radio" name="q24" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>25. How often do you avoid social events because of concerns about food?</h3>
-            <label><input type="radio" name="q25" value="0" required> Never</label>
-            <label><input type="radio" name="q25" value="1"> Rarely</label>
-            <label><input type="radio" name="q25" value="2"> Sometimes</label>
-            <label><input type="radio" name="q25" value="3"> Often</label>
-            <label><input type="radio" name="q25" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>26. How often do you feel anxiety over food choices?</h3>
-            <label><input type="radio" name="q26" value="0" required> Never</label>
-            <label><input type="radio" name="q26" value="1"> Rarely</label>
-            <label><input type="radio" name="q26" value="2"> Sometimes</label>
-            <label><input type="radio" name="q26" value="3"> Often</label>
-            <label><input type="radio" name="q26" value="4"> Very Often</label>
-        </div>
-        <div class="question">
-            <h3>27. How often do you feel unhappy with your eating habits?</h3>
-            <label><input type="radio" name="q27" value="0" required> Never</label>
-            <label><input type="radio" name="q27" value="1"> Rarely</label>
-            <label><input type="radio" name="q27" value="2"> Sometimes</label>
-            <label><input type="radio" name="q27" value="3"> Often</label>
-            <label><input type="radio" name="q27" value="4"> Very Often</label>
-        </div>
-
-      <center>  <button class="submit-button" type="button" onclick="calculateResult()" >Submit</button></center>
-    </form>
+    <div class="container">
+        <form id="screeningForm">
+            <!-- Question 1 -->
+            <div id="question1" class="question">
+                <center><h1>LONG SCREENING</h1></center>
+                <h3>1. How often do you think about food and weight?</h3>
+                <label><input type="radio" name="q1" value="0" required> Never</label><br>
+                <label><input type="radio" name="q1" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q1" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q1" value="3"> Often</label><br>
+                <label><input type="radio" name="q1" value="4"> Very Often</label><br>
+                <button type="button" id="nextButton1" class="button">Next</button>
+            </div>
+            
+            <!-- Question 2 -->
+            <div id="question2" class="question hidden">
+                <h3>2. How often do you intentionally restrict your calorie intake?</h3>
+                <label><input type="radio" name="q2" value="0" required> Never</label><br>
+                <label><input type="radio" name="q2" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q2" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q2" value="3"> Often</label><br>
+                <label><input type="radio" name="q2" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton2" class="button">Previous</button>
+                <button type="button" id="nextButton2" class="button">Next</button>
+            </div>
+            
+            <!-- Question 3 -->
+            <div id="question3" class="question hidden">
+                <h3>3. How concerned are you about your body weight and shape?</h3>
+                <label><input type="radio" name="q3" value="0" required> Not at all concerned</label><br>
+                <label><input type="radio" name="q3" value="1"> Slightly concerned</label><br>
+                <label><input type="radio" name="q3" value="2"> Moderately concerned</label><br>
+                <label><input type="radio" name="q3" value="3"> Very concerned</label><br>
+                <label><input type="radio" name="q3" value="4"> Extremely concerned</label><br>
+                <button type="button" id="prevButton3" class="button">Previous</button>
+                <button type="button" id="nextButton3" class="button">Next</button>
+            </div>
+            
+            <!-- Question 4 -->
+            <div id="question4" class="question hidden">
+                <h3>4. How often do you avoid eating with others?</h3>
+                <label><input type="radio" name="q4" value="0" required> Never</label><br>
+                <label><input type="radio" name="q4" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q4" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q4" value="3"> Often</label><br>
+                <label><input type="radio" name="q4" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton4" class="button">Previous</button>
+                <button type="button" id="nextButton4" class="button">Next</button>
+            </div>
+            
+            <!-- Question 5 -->
+            <div id="question5" class="question hidden">
+                <h3>5. How often do you feel fat despite being told you're not?</h3>
+                <label><input type="radio" name="q5" value="0" required> Never</label><br>
+                <label><input type="radio" name="q5" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q5" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q5" value="3"> Often</label><br>
+                <label><input type="radio" name="q5" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton5" class="button">Previous</button>
+                <button type="button" id="nextButton5" class="button">Next</button>
+            </div>
+            
+            <!-- Question 6 -->
+            <div id="question6" class="question hidden">
+                <h3>6. How often do you exercise excessively to control your weight?</h3>
+                <label><input type="radio" name="q6" value="0" required> Never</label><br>
+                <label><input type="radio" name="q6" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q6" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q6" value="3"> Often</label><br>
+                <label><input type="radio" name="q6" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton6" class="button">Previous</button>
+                <button type="button" id="nextButton6" class="button">Next</button>
+            </div>
+            
+            <!-- Question 7 -->
+            <div id="question7" class="question hidden">
+                <h3>7. How often do you skip meals to lose weight?</h3>
+                <label><input type="radio" name="q7" value="0" required> Never</label><br>
+                <label><input type="radio" name="q7" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q7" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q7" value="3"> Often</label><br>
+                <label><input type="radio" name="q7" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton7" class="button">Previous</button>
+                <button type="button" id="nextButton7" class="button">Next</button>
+            </div>
+            
+            <!-- Question 8 -->
+            <div id="question8" class="question hidden">
+                <h3>8. How often do you use diet pills to lose weight?</h3>
+                <label><input type="radio" name="q8" value="0" required> Never</label><br>
+                <label><input type="radio" name="q8" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q8" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q8" value="3"> Often</label><br>
+                <label><input type="radio" name="q8" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton8" class="button">Previous</button>
+                <button type="button" id="nextButton8" class="button">Next</button>
+            </div>
+            
+            <!-- Question 9 -->
+            <div id="question9" class="question hidden">
+                <h3>9. How often do you binge eat?</h3>
+                <label><input type="radio" name="q9" value="0" required> Never</label><br>
+                <label><input type="radio" name="q9" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q9" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q9" value="3"> Often</label><br>
+                <label><input type="radio" name="q9" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton9" class="button">Previous</button>
+                <button type="button" id="nextButton9" class="button">Next</button>
+            </div>
+            
+            <!-- Question 10 -->
+            <div id="question10" class="question hidden">
+                <h3>10. How often do you use laxatives to control your weight?</h3>
+                <label><input type="radio" name="q10" value="0" required> Never</label><br>
+                <label><input type="radio" name="q10" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q10" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q10" value="3"> Often</label><br>
+                <label><input type="radio" name="q10" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton10" class="button">Previous</button>
+                <button type="button" id="nextButton10" class="button">Next</button>
+            </div>
+            
+            <!-- Question 11 -->
+            <div id="question11" class="question hidden">
+                <h3>11. How often do you purge after eating?</h3>
+                <label><input type="radio" name="q11" value="0" required> Never</label><br>
+                <label><input type="radio" name="q11" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q11" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q11" value="3"> Often</label><br>
+                <label><input type="radio" name="q11" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton11" class="button">Previous</button>
+                <button type="button" id="nextButton11" class="button">Next</button>
+            </div>
+            
+            <!-- Question 12 -->
+            <div id="question12" class="question hidden">
+                <h3>12. How often do you think you are overweight even if others don't?</h3>
+                <label><input type="radio" name="q12" value="0" required> Never</label><br>
+                <label><input type="radio" name="q12" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q12" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q12" value="3"> Often</label><br>
+                <label><input type="radio" name="q12" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton12" class="button">Previous</button>
+                <button type="button" id="nextButton12" class="button">Next</button>
+            </div>
+            
+            <!-- Question 13 -->
+            <div id="question13" class="question hidden">
+                <h3>13. How often do you feel out of control while eating?</h3>
+                <label><input type="radio" name="q13" value="0" required> Never</label><br>
+                <label><input type="radio" name="q13" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q13" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q13" value="3"> Often</label><br>
+                <label><input type="radio" name="q13" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton13" class="button">Previous</button>
+                <button type="button" id="nextButton13" class="button">Next</button>
+            </div>
+            
+            <!-- Question 14 -->
+            <div id="question14" class="question hidden">
+                <h3>14. How often do you avoid social events due to worries about eating?</h3>
+                <label><input type="radio" name="q14" value="0" required> Never</label><br>
+                <label><input type="radio" name="q14" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q14" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q14" value="3"> Often</label><br>
+                <label><input type="radio" name="q14" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton14" class="button">Previous</button>
+                <button type="button" id="nextButton14" class="button">Next</button>
+            </div>
+            
+            <!-- Question 15 -->
+            <div id="question15" class="question hidden">
+                <h3>15. How often do you feel that your eating habits are affecting your health?</h3>
+                <label><input type="radio" name="q15" value="0" required> Never</label><br>
+                <label><input type="radio" name="q15" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q15" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q15" value="3"> Often</label><br>
+                <label><input type="radio" name="q15" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton15" class="button">Previous</button>
+                <button type="button" id="nextButton15" class="button">Next</button>
+            </div>
+            
+            <!-- Question 16 -->
+            <div id="question16" class="question hidden">
+                <h3>16. How often do you have strong cravings for certain foods that you avoid?</h3>
+                <label><input type="radio" name="q16" value="0" required> Never</label><br>
+                <label><input type="radio" name="q16" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q16" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q16" value="3"> Often</label><br>
+                <label><input type="radio" name="q16" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton16" class="button">Previous</button>
+                <button type="button" id="nextButton16" class="button">Next</button>
+            </div>
+            
+            <!-- Question 17 -->
+            <div id="question17" class="question hidden">
+                <h3>17. How often do you experience feelings of guilt or shame after eating?</h3>
+                <label><input type="radio" name="q17" value="0" required> Never</label><br>
+                <label><input type="radio" name="q17" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q17" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q17" value="3"> Often</label><br>
+                <label><input type="radio" name="q17" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton17" class="button">Previous</button>
+                <button type="button" id="nextButton17" class="button">Next</button>
+            </div>
+            
+            <!-- Question 18 -->
+            <div id="question18" class="question hidden">
+                <h3>18. How often do you feel unable to stop eating once you start?</h3>
+                <label><input type="radio" name="q18" value="0" required> Never</label><br>
+                <label><input type="radio" name="q18" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q18" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q18" value="3"> Often</label><br>
+                <label><input type="radio" name="q18" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton18" class="button">Previous</button>
+                <button type="button" id="nextButton18" class="button">Next</button>
+            </div>
+            
+            <!-- Question 19 -->
+            <div id="question19" class="question hidden">
+                <h3>19. How often do you feel that you are judged for your eating habits?</h3>
+                <label><input type="radio" name="q19" value="0" required> Never</label><br>
+                <label><input type="radio" name="q19" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q19" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q19" value="3"> Often</label><br>
+                <label><input type="radio" name="q19" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton19" class="button">Previous</button>
+                <button type="button" id="nextButton19" class="button">Next</button>
+            </div>
+            
+            <!-- Question 20 -->
+            <div id="question20" class="question hidden">
+                <h3>20. How often do you compare your eating habits to those of others?</h3>
+                <label><input type="radio" name="q20" value="0" required> Never</label><br>
+                <label><input type="radio" name="q20" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q20" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q20" value="3"> Often</label><br>
+                <label><input type="radio" name="q20" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton20" class="button">Previous</button>
+                <button type="button" id="nextButton20" class="button">Next</button>
+            </div>
+            
+            <!-- Question 21 -->
+            <div id="question21" class="question hidden">
+                <h3>21. How often do you use food as a way to cope with stress?</h3>
+                <label><input type="radio" name="q21" value="0" required> Never</label><br>
+                <label><input type="radio" name="q21" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q21" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q21" value="3"> Often</label><br>
+                <label><input type="radio" name="q21" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton21" class="button">Previous</button>
+                <button type="button" id="nextButton21" class="button">Next</button>
+            </div>
+            
+            <!-- Question 22 -->
+            <div id="question22" class="question hidden">
+                <h3>22. How often do you feel distressed about your body image?</h3>
+                <label><input type="radio" name="q22" value="0" required> Never</label><br>
+                <label><input type="radio" name="q22" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q22" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q22" value="3"> Often</label><br>
+                <label><input type="radio" name="q22" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton22" class="button">Previous</button>
+                <button type="button" id="nextButton22" class="button">Next</button>
+            </div>
+            
+            <!-- Question 23 -->
+            <div id="question23" class="question hidden">
+                <h3>23. How often do you feel that your eating patterns interfere with daily life?</h3>
+                <label><input type="radio" name="q23" value="0" required> Never</label><br>
+                <label><input type="radio" name="q23" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q23" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q23" value="3"> Often</label><br>
+                <label><input type="radio" name="q23" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton23" class="button">Previous</button>
+                <button type="button" id="nextButton23" class="button">Next</button>
+            </div>
+            
+            <!-- Question 24 -->
+            <div id="question24" class="question hidden">
+                <h3>24. How often do you hide your eating habits from others?</h3>
+                <label><input type="radio" name="q24" value="0" required> Never</label><br>
+                <label><input type="radio" name="q24" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q24" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q24" value="3"> Often</label><br>
+                <label><input type="radio" name="q24" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton24" class="button">Previous</button>
+                <button type="button" id="nextButton24" class="button">Next</button>
+            </div>
+            
+            <!-- Question 25 -->
+            <div id="question25" class="question hidden">
+                <h3>25. How often do you feel uncomfortable eating in public?</h3>
+                <label><input type="radio" name="q25" value="0" required> Never</label><br>
+                <label><input type="radio" name="q25" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q25" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q25" value="3"> Often</label><br>
+                <label><input type="radio" name="q25" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton25" class="button">Previous</button>
+                <button type="button" id="nextButton25" class="button">Next</button>
+            </div>
+            
+            <!-- Question 26 -->
+            <div id="question26" class="question hidden">
+                <h3>26. How often do you avoid certain foods because you think they are unhealthy?</h3>
+                <label><input type="radio" name="q26" value="0" required> Never</label><br>
+                <label><input type="radio" name="q26" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q26" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q26" value="3"> Often</label><br>
+                <label><input type="radio" name="q26" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton26" class="button">Previous</button>
+                <button type="button" id="nextButton26" class="button">Next</button>
+            </div>
+            
+            <!-- Question 27 -->
+            <div id="question27" class="question hidden">
+                <h3>27. How often do you feel that your eating habits are out of control?</h3>
+                <label><input type="radio" name="q27" value="0" required> Never</label><br>
+                <label><input type="radio" name="q27" value="1"> Rarely</label><br>
+                <label><input type="radio" name="q27" value="2"> Sometimes</label><br>
+                <label><input type="radio" name="q27" value="3"> Often</label><br>
+                <label><input type="radio" name="q27" value="4"> Very Often</label><br>
+                <button type="button" id="prevButton27" class="button">Previous</button>
+                <button type="submit" class="button" onclick="calculateResult()">Submit</button>
+            </div>
+        </form>
+    </div>
 
     <div id="resultModal" class="modal">
         <div class="modal-content">
@@ -404,10 +502,30 @@ body {
     </div>
 
     <script>
+        let currentQuestion = 1;
+
+        function showQuestion(questionNumber) {
+            for (let i = 1; i <= 27; i++) {
+                document.getElementById('question' + i).style.display = (i === questionNumber) ? 'block' : 'none';
+            }
+        }
+
+        function handleNextButton() {
+            if (currentQuestion < 27) {
+                showQuestion(++currentQuestion);
+            }
+        }
+
+        function handlePreviousButton() {
+            if (currentQuestion > 1) {
+                showQuestion(--currentQuestion);
+            }
+        }
+
         function calculateResult() {
-            const form = document.forms['questionnaire'];
+            const form = document.forms['screeningForm'];
             const values = Array.from(new FormData(form).values()).map(Number);
-            
+
             let anorexiaScore = 0;
             let bulimiaScore = 0;
             let bingeEatingScore = 0;
@@ -427,7 +545,7 @@ body {
 
             // Determine result
             let result = '';
-    
+
             // Anorexia Nervosa Classification
             if (anorexiaScore >= 20) {
                 result = "High Risk of Anorexia Nervosa";
@@ -436,7 +554,7 @@ body {
             } else {
                 result = "Low Risk of Anorexia Nervosa";
             }
-    
+
             // Bulimia Nervosa Classification
             if (bulimiaScore >= 25) {
                 result = "High Risk of Bulimia Nervosa";
@@ -445,7 +563,7 @@ body {
             } else {
                 result = "Low Risk of Bulimia Nervosa";
             }
-    
+
             // Binge Eating Disorder Classification
             if (bingeEatingScore >= 30) {
                 result = "High Risk of Binge Eating Disorder";
@@ -454,7 +572,7 @@ body {
             } else {
                 result = "Low Risk of Binge Eating Disorder";
             }
-    
+
             // General Classification
             if (generalScore >= 90) {
                 result += " and High Impact on Daily Life";
@@ -463,17 +581,34 @@ body {
             } else {
                 result += " and Low Impact on Daily Life";
             }
-    
+
             // Display result in modal
             document.getElementById('resultText').innerText = result;
             document.getElementById('resultModal').style.display = 'block';
             document.getElementById('continueLink').href = `/signup?result=${encodeURIComponent(result)}`;
-        
         }
 
         function closeModal() {
             document.getElementById('resultModal').style.display = 'none';
         }
+
+        // Add event listeners for "Next" and "Previous" buttons
+        for (let i = 1; i <= 27; i++) {
+            const nextButton = document.getElementById(`nextButton${i}`);
+            const prevButton = document.getElementById(`prevButton${i}`);
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', handleNextButton);
+            }
+            if (prevButton) {
+                prevButton.addEventListener('click', handlePreviousButton);
+            }
+        }
+
+        document.getElementById('submitButton').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent form submission
+            calculateResult();
+        });
         function navigateToSignup() {
             // Close the modal before navigating
             closeModal();
@@ -485,6 +620,9 @@ body {
             // Navigate to the /signup route with the result
             window.location.href = `/signup?result=${encodeURIComponent(result)}`;
         }
+
+        // Initialize the first question
+        showQuestion(currentQuestion);
     </script>
 </body>
 </html>

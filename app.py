@@ -173,7 +173,7 @@ def buy_mon():
     if mon and current_user.points >= mon.points:
         current_user.points -= mon.points
         db.session.commit()
-        flash("Congratulations, you bought a GreeniMon!!")
+        flash("Congratulations, you bought a EatiMon!!")
         return redirect(url_for('shop'))
     else:
         # You can add logic to save the purchase if needed
@@ -243,8 +243,10 @@ def distract_session():
     global img
     ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
     img = random.choice(ex)
-    current_user.points +=20
-    return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
+    current_user.points = current_user.points + 20
+    db.session.commit()
+    pts = current_user.points
+    return render_template('/distractions.html', img = img, points=pts), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
 
 @app.route('/meallog')
