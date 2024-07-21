@@ -16,7 +16,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-ggi.configure(api_key = os.get_env('API_KEY'))
+ggi.configure(api_key = os.getenv('API_KEY'))
 
 model = ggi.GenerativeModel("gemini-pro") 
 chat = model.start_chat()
