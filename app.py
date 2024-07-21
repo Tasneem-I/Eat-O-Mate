@@ -142,7 +142,7 @@ points=points)
         db.session.commit()
         points = user.points
         login_user(user)
-        return render_template("meallog.html", points=points)
+        return redirect(url_for("meallog"))
     return render_template("signup.html")
 
 
@@ -180,7 +180,7 @@ def buy_mon():
         flash("Not enough points, collect more points by completing quests")
     return redirect(url_for('shop'))
 
-@app.route('/meallog')
+'''@app.route('/meallog')
 @login_required
 def meal_log():
 
@@ -228,7 +228,7 @@ def meal_log():
                 } if eat_with else None
             }
 
-    return render_template('normal_meals.html', results=results)
+    return render_template('normal_meals.html', results=results)'''
 
 
 
@@ -246,7 +246,12 @@ def distract_session():
     current_user.points +=20
     return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
-  
+
+@app.route('/meallog')
+@login_required
+def meallog():
+    pts = current_user.points
+    return render_template("meallog.html",points=pts)
 @app.route("/add_meal_log", methods=["POST"])
 @login_required
 def add_meal_log():
