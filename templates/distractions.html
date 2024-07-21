@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #d9e0e5, #f0f0f0); /* Gradient background */
+            background-color: #FFFBF0; /* Gradient background */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -70,7 +70,6 @@
             height: 1.2%;
         }
         .text-cont {
-            background-color: cadetblue;
             width: 100%;
             color: white;    /* Enable Flexbox layout */
   
@@ -80,7 +79,7 @@
             margin-bottom: 0.5%;
         }
         #timer-box {
-  background-color: cadetblue; /* Light gray background */
+  background-color: #53655c ; /* Light gray background */
   border: 3px solid #060000; 
   color:white;    /* Thin gray border */
   padding: 8px;  
@@ -91,12 +90,11 @@
 }
 
 #countdown {
-  font-size: 36px;        /* Make the timer text larger */
+  font-size: 30px;        /* Make the timer text larger */
   font-weight: bold;      /* Make the timer text bold */
 }
 .start-button {
-        background-color: #e8d7c7;
-        margin-left: 7px;
+    background-color: #fda752;
         border-radius: 20px;
         padding: 20px;
         width: 10%;
@@ -106,6 +104,7 @@
         text-decoration: none;
       }
       .text-cont {
+        background-color: #53655c;
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -114,7 +113,7 @@
 
  .text-cont h1 {
     margin-left: 40%;
-    color: #060000;
+    color: #fefcfc;
  }
 .back-button img {
     width: 40px;
@@ -138,10 +137,10 @@
             <img src="/static/back-icon.png" alt="Back">
         </a>
         <h1>Distraction Time!</h1>
-        <button type="submit" class="start-button" onclick="submitForm()" style="font-size:large; margin-left: 20%;width: 15%; height: 1%;"><b><a href="/distract">End Session</a></b></button>
+        
         
     </div>
-    <div id="timer-box">
+    <div id="timer-box" style="width:10%;height: 1%;">
         <span id="countdown">00:10</span> 
       </div>
     <div class="container">
@@ -152,6 +151,8 @@
             <video id="video" autoplay></video>
         </div>
     </div>
+    
+    <button type="submit" class="start-button" onclick="submitForm()" style="font-size:large;width: 15%; height: 1%;background-color: #efb881;margin-top: 1%;margin-bottom: 1.5%;"><b><a href="/distract">End Session</a></b></button>
 
     <script>
         // Get a reference to the video element
