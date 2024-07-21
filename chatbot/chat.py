@@ -28,7 +28,7 @@ for role, message in st.session_state.chat_history:
             <div style='background-color: #f0f0f0; padding: 10px; border-radius: 10px;'>
                 {message}
             </div>
-            <img src='https://github.com/StellarStrivers/Eat-O-Mate/blob/main/assets/chatbot.png' style='border-radius: 50%; margin-left: 10px;' />
+            <img src='https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png' style='border-radius: 50%; margin-left: 10px;' />
         </div>
         """, unsafe_allow_html=True)
     else:
