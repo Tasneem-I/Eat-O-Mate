@@ -95,7 +95,7 @@ def home():
 
 @app.route("/home")
 def homes():
-    return render_template("landingpage.html")
+    return render_template("feature.html")
 
 @app.route("/anorexia")
 def ano():

@@ -32,8 +32,8 @@
         text-decoration: none;
       }
       .nav-links a {
-        color: #whitesmoke;
-        font-size: 20px;
+        color: whitesmoke;
+        font-size: 18px;
         font-weight: bold;
         margin-right: 60px;
         margin-left: 60px;
@@ -55,8 +55,22 @@
         padding: 10px 15px;
         width: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+      }
+      .navbar {
+        background:  #53655c;
+        padding: 10px 15px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        text-decoration: none;
       }
       .navbar .logo img {
         height: 50px;
@@ -156,15 +170,16 @@
   <body>
     <nav class="navbar">
       <div class="logo">
-        <a href="#">
           <img src="/static/image.png" alt="LOGO" />
-          EATO MATE
-        </a>
+         
       </div>
       <div class="nav-links">
-        <a href="/" style="color: whitesmoke">HOME</a>
-        <a href="/get_meal_logs" style="color: whitesmoke">MEAL LOG</a>
-        <a href="/shop" style="color: whitesmoke">MON SHOP</a>
+        
+        <a href="/home" style="font-size: 20px;color: white;">HOME</a>
+        <a href="https://eat--o--mate.streamlit.app/" style="color: whitesmoke">CHATBOT</a>
+        <a href="/distract" style="color: whitesmoke;">DISTRACT</a>
+        <a href="/meallog" style="color: whitesmoke">MEALLOG</a>
+        <a href="/shop" style="color: whitesmoke">MONSHOP</a>
         <a href="#" style="color: whitesmoke">{{ points }}</a>
       </div>
     </nav>
