@@ -85,7 +85,7 @@ with app.app_context():
 
 
 @login_manager.user_loader
-def user_load(user_id):
+def load_user(user_id):
     return Users.query.get(int(user_id))
 
 short_model = joblib.load("short_screen_model/final_dt.joblib")
@@ -125,6 +125,25 @@ def long():
 def short():
     return render_template("ShortScreening.html")
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        usertype = request.args.get('result')
+        name = request.form.get("name")
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        height = request.form.get("height")
+        weight = request.form.get("weight")
+        points = 100
+        user = Users(name=name, email=email, username=username, password=password,height=height,weight=weight, usertype=usertype,
+points=points)
+        db.session.add(user)
+        db.session.commit()
+        points = user.points
+        login_user(user)
+        return redirect(url_for("meallog"))
+    return render_template("signup.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -136,7 +155,7 @@ def login():
             session["user_id"] = user.id
             session["user"]= user.points
             logins= True
-            return render_template("home_loggedin.html", login=logins, points= user.points)
+            return render_template("meallog.html", login=logins, points= user.points)
     return render_template("login.html")
 
 @app.route("/shop")
@@ -146,7 +165,22 @@ def shop():
     mons = EatMon.query.all()
     return render_template("monshop.html", points=points, mons=mons)
 
-@app.route('/meallog')
+@app.route("/buy_mon", methods=["POST"])
+@login_required
+def buy_mon():
+    mon_id = request.form.get("mon_id")
+    mon = EatMon.query.get(mon_id)
+    if mon and current_user.points >= mon.points:
+        current_user.points -= mon.points
+        db.session.commit()
+        flash("Congratulations, you bought a GreeniMon!!")
+        return redirect(url_for('shop'))
+    else:
+        # You can add logic to save the purchase if needed
+        flash("Not enough points, collect more points by completing quests")
+    return redirect(url_for('shop'))
+
+'''@app.route('/meallog')
 @login_required
 def meal_log():
 
@@ -194,22 +228,30 @@ def meal_log():
                 } if eat_with else None
             }
 
-    return render_template('normal_meals.html', results=results)
+    return render_template('normal_meals.html', results=results)'''
 
 
 
 @app.route('/distract', methods=["GET", "POST"])
+@login_required
 def distract(): 
-    return render_template('/distractions_start.html')
+    userpoints = current_user.points
+    return render_template('/distractions_start.html', points= userpoints)
 
 @app.route('/distract_session')
 def distract_session():
     global img
     ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
     img = random.choice(ex)
+    current_user.points +=20
     return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
-  
+
+@app.route('/meallog')
+@login_required
+def meallog():
+    pts = current_user.points
+    return render_template("meallog.html",points=pts)
 @app.route("/add_meal_log", methods=["POST"])
 @login_required
 def add_meal_log():
@@ -224,6 +266,7 @@ def add_meal_log():
         urge_to_restrict=data["urge_to_restrict"],
         eat_with=data["eat_with"]
     )
+    current_user.points+=20
     db.session.add(new_log)
     db.session.commit()
     return jsonify({
@@ -237,7 +280,7 @@ def add_meal_log():
     })
 
 @app.route("/get_meal_logs", methods=["GET"])
-#@login_required
+@login_required
 def get_meal_logs():
     logs = MealLog.query.filter_by(user_id=current_user.id).all()
     return jsonify([
