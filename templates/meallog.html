@@ -189,6 +189,11 @@
       <h1 style="margin-top: 30px; margin-bottom: 30px">
         Welcome to Your Meal Logger
       </h1>
+      <div class="track-container" style="background-color: rgb(245, 212, 187);" >
+      {% if mc > 0 %}
+  <p>Total Normal Meals: {{ mc }}</p>
+  <p>Your normal meals were mostly eaten with: {{ ac }}</p>
+{% endif %}</div>
       <div class="track-container">
         <p>
           Track your meals and transform your eating habits with ease. As they
