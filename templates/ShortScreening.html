@@ -1,395 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eating Disorder Screening</title>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background: url('/static/img.png') no-repeat center center fixed;
-            background-size: cover; /* Ensures the background image covers the entire screen */
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: flex-start; /* Aligns container to the top */
-            justify-content: center; /* Centers container horizontally */
-            overflow-x: auto; /* Allows horizontal scrolling if needed */
-            overflow-y: auto; /* Allows vertical scrolling if needed */
-            padding-top: 10%; /* Adds padding to the top */
-        }
-        .container {
-            text-align: left; /* Centers text inside the container */
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background for readability */
-            border-radius: 8px; /* Rounds the corners of the container */
-            width: 90%; /* Adjust this value if needed */
-            height: 50vh; /* Ensures the container doesn’t exceed viewport height */
-            overflow: auto; /* Adds scrollbars if the content exceeds container size */
-            box-sizing: border-box; /* Ensures padding is included in the height */
-            margin-top: 15%; /* Adds margin to the top */
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        /* Modal Container (for background overlay) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black background with opacity */
-        }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-        /* Modal Content */
-        .modal-content {
-            background-color: #ffffff; /* White background for clarity */
-            margin: 10% auto; /* Center the modal vertically and horizontally */
-            padding: 20px;
-            border-radius: 12px; /* Rounded corners */
-            width: 20vw; /* Width of the modal */
-            height: 20vw; /* Height of the modal, set to the same as width */
-            max-width: 600px; /* Maximum width */
-            max-height: 600px; /* Maximum height */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-            animation: fadeIn 0.3s ease-out; /* Fade-in animation */
-            position: relative; /* Position for the close button */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+      body {
+        background: url("/static/img.png") no-repeat center center fixed;
+        background-size: cover; /* Ensures the background image covers the entire screen */
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: flex-start; /* Aligns container to the top */
+        justify-content: center; /* Centers container horizontally */
+        overflow-x: auto; /* Allows horizontal scrolling if needed */
+        overflow-y: auto; /* Allows vertical scrolling if needed */
+        padding-top: 0%; /* Adds padding to the top */
+      }
 
-        /* Animation for Modal Fade-In */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      .container {
+        text-align: left; /* Centers text inside the container */
+        padding: 20px;
+        background: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Adds a semi-transparent background for readability */
+        border-radius: 20px; /* Rounds the corners of the container */
+        width: 75%; /* Adjust this value if needed */
+        height: 60vh; /* Ensures the container doesn’t exceed viewport height */
+        overflow: auto; /* Adds scrollbars if the content exceeds container size */
+        box-sizing: border-box; /* Ensures padding is included in the height */
+        margin-top: 15%; /* Adds margin to the top */
+        font-size: 18px; /* Increases base font size */
+      }
 
-        /* Close Button */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+      h1 {
+        font-size: 1.5em; /* Increases size of main heading */
+      }
 
-        .close:hover {
-            color: #ff5c5c; /* Change color on hover */
-        }
+      h3 {
+        font-size: 0.7 em; /* Increases size of subheadings */
+        margin-bottom: 20px;
+      }
 
-        /* Modal Header */
-        .modal-header {
-            border-bottom: 1px solid #ddd; /* Light border for header */
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
+      input[type="radio"] {
+        margin-right: 10px; /* Adds space between radio buttons and labels */
+      }
 
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.5em;
-        }
+      button {
+        font-size: 15px; /* Increases button font size */
+      }
 
-        /* Modal Body */
-        .modal-body {
-            padding: 10px 0;
-            text-align: center; /* Center text inside modal */
-        }
+      .nextbutton {
+        padding: 12px 24px; /* Increases button padding */
+      }
 
-        /* Modal Footer */
-        .modal-footer {
-            border-top: 1px solid #ddd; /* Light border for footer */
-            padding-top: 10px;
-            text-align: right;
-        }
+      .progress-bar {
+        font-size: 12px; /* Increases font size in progress bar */
+      }
 
-        .modal-footer button {
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px; /* Rounded corners */
-            transition: background-color 0.3s ease;
-        }
+      .hidden {
+        display: none;
+      }
 
-        .modal-footer button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
+      /* Modal Container (for background overlay) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.4
+        ); /* Black background with opacity */
+      }
 
-        .button {
-            margin-top: 20px;
-            color: white;
-            background-color: #53655c;
-            border: none;
-            height: 1cm;
-            width: 2cm;
-            border-radius: 2px;/* Adjusted width */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      /* Modal Content */
+      .modal-content {
+        background-color: #ffffff; /* White background for clarity */
+        margin: 10% auto; /* Center the modal vertically and horizontally */
+        padding: 20px;
+        border-radius: 12px; /* Rounded corners */
+        width: 20vw; /* Width of the modal */
+        height: 20vw; /* Height of the modal, set to the same as width */
+        max-width: 600px; /* Maximum width */
+        max-height: 600px; /* Maximum height */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        animation: fadeIn 0.3s ease-out; /* Fade-in animation */
+        position: relative; /* Position for the close button */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .nextbutton {
-            margin-top: 20px;
-            color: white;
-            background-color: #53655c;
-            border: none;
-            border-radius: 2px;
-            padding: 10px 20px; /* Adjusted width */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+      /* Animation for Modal Fade-In */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
         }
-        .nextbutton-container {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
+      /* Close Button */
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
 
-        .button:hover {
-            background-color: #43544a;
-        }
+      .close:hover {
+        color: #ff5c5c; /* Change color on hover */
+      }
+
+      /* Modal Header */
+      .modal-header {
+        border-bottom: 1px solid #ddd; /* Light border for header */
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+
+      /* Modal Body */
+      .modal-body {
+        padding: 10px 0;
+        text-align: center; /* Center text inside modal */
+      }
+
+      /* Modal Footer */
+      .modal-footer {
+        border-top: 1px solid #ddd; /* Light border for footer */
+        padding-top: 10px;
+        text-align: right;
+      }
+
+      .modal-footer button {
+        background-color: #4caf50; /* Green background */
+        color: white; /* White text */
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px; /* Rounded corners */
+        transition: background-color 0.3s ease;
+      }
+
+      .modal-footer button:hover {
+        background-color: #45a049; /* Darker green on hover */
+      }
+
+      .button {
+        margin-top: 20px;
+        color: white;
+        background-color: #ed9218;
+        border: none;
+        height: 1cm; /* Increased height */
+        width: 2cm; /* Increased width */
+        border-radius: 10px; /* Adjusted border radius */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .button:hover {
+        background-color: #ed9218;
+      }
+
+      /* Progress Bar Styles */
+      .progress-container {
+        width: 100%;
+        background-color: #f2f4e2; /* Light background for the container */
+        border-radius: 10px;
+        height: 15px; /* Height of the progress bar container */
+        margin-bottom: 40px; /* Space between progress bar and content */
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        font-size: 12px; /* Increased font size */
+        background-color: #53655c; /* Green background for the progress */
+        text-align: center; /* Center text inside the progress bar */
+        line-height: 15px; /* Align text vertically */
+        color: black;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <form id="screeningForm">
-            <!-- Question 1 -->
-            <div id="question1" class="question">
-                <h1>SHORT SCREENING</h1>
-                <h3>1. How often have you eaten what other people would regard as an unusually large amount of food given the circumstances?</h3><br>
-                <input type="radio" name="q1" value="0" required> Never<br>
-                <input type="radio" name="q1" value="1"> Less than once a month<br>
-                <input type="radio" name="q1" value="2"> Once a month<br>
-                <input type="radio" name="q1" value="3"> 2-3 times a month<br>
-                <input type="radio" name="q1" value="4"> Once a week<br>
-                <input type="radio" name="q1" value="5"> 2-6 times a week<br>
-                <input type="radio" name="q1" value="6"> Once a day or more<br>
-                <button type="button" id="nextButton1" class="button">Next</button>
-            </div>
-            
-            <!-- Question 2 -->
-            <div id="question2" class="question hidden">
-                <h3>2. How often have you had a sense of loss of control over eating (at the time you were eating)?</h3><br>
-                <input type="radio" name="q2" value="0" required> Never<br>
-                <input type="radio" name="q2" value="1"> Less than once a month<br>
-                <input type="radio" name="q2" value="2"> Once a month<br>
-                <input type="radio" name="q2" value="3"> 2-3 times a month<br>
-                <input type="radio" name="q2" value="4"> Once a week<br>
-                <input type="radio" name="q2" value="5"> 2-6 times a week<br>
-                <input type="radio" name="q2" value="6"> Once a day or more<br><center>
-                <button type="button" id="prevButton2" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton2" class="button"> Next </button></center>
-            </div>
-            
-            <!-- Question 3 -->
-            <div id="question3" class="question hidden">
-                <h3>3. How often have you made yourself sick (vomited) as a means of controlling your shape or weight?</h3><br>
-                <input type="radio" name="q3" value="0" required> Never<br>
-                <input type="radio" name="q3" value="1"> Less than once a month<br>
-                <input type="radio" name="q3" value="2"> Once a month<br>
-                <input type="radio" name="q3" value="3"> 2-3 times a month<br>
-                <input type="radio" name="q3" value="4"> Once a week<br>
-                <input type="radio" name="q3" value="5"> 2-6 times a week<br>
-                <input type="radio" name="q3" value="6"> Once a day or more<br><center>
-                <button type="button" id="prevButton3" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton3" class="button">Next</button></center>
-            </div>
-            
-            <!-- Question 4 -->
-            <div id="question4" class="question hidden">
-                <h3>4. How often have you exercised in a "driven" or "compulsive" way as a means of controlling your weight, shape, or amount of fat, or to burn off calories?</h3><br>
-                <input type="radio" name="q4" value="0" required> Never<br>
-                <input type="radio" name="q4" value="1"> Less than once a month<br>
-                <input type="radio" name="q4" value="2"> Once a month<br>
-                <input type="radio" name="q4" value="3"> 2-3 times a month<br>
-                <input type="radio" name="q4" value="4"> Once a week<br>
-                <input type="radio" name="q4" value="5"> 2-6 times a week<br>
-                <input type="radio" name="q4" value="6"> Once a day or more<br><center>
-                <button type="button" id="prevButton4" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton4" class="button">Next</button></center>
-            </div>
-            
-            <!-- Question 5 -->
-            <div id="question5" class="question hidden">
-                <h3>5. How often have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?</h3><br>
-                <input type="radio" name="q5" value="0" required> Never<br>
-                <input type="radio" name="q5" value="1"> Less than once a month<br>
-                <input type="radio" name="q5" value="2"> Once a month<br>
-                <input type="radio" name="q5" value="3"> 2-3 times a month<br>
-                <input type="radio" name="q5" value="4"> Once a week<br>
-                <input type="radio" name="q5" value="5"> 2-6 times a week<br>
-                <input type="radio" name="q5" value="6"> Once a day or more<br><center>
-                <button type="button" id="prevButton5" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton5" class="button">Next</button></center>
-            </div>
-            
-            <!-- Question 6 -->
-            <div id="question6" class="question hidden">
-                <h3>6. How dissatisfied have you been with your weight?</h3><br>
-                <input type="radio" name="q6" value="0" required> Not at all<br>
-                <input type="radio" name="q6" value="1"> Slightly<br>
-                <input type="radio" name="q6" value="2"> Moderately<br>
-                <input type="radio" name="q6" value="3"> Very<br>
-                <input type="radio" name="q6" value="4"> Extremely<br><center>
-                <button type="button" id="prevButton6" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton6" class="button">Next</button></center>
-            </div>
-            
-            <!-- Question 7 -->
-            <div id="question7" class="question hidden">
-                <h3>7. How dissatisfied have you been with your shape?</h3><br>
-                <input type="radio" name="q7" value="0" required> Not at all<br>
-                <input type="radio" name="q7" value="1"> Slightly<br>
-                <input type="radio" name="q7" value="2"> Moderately<br>
-                <input type="radio" name="q7" value="3"> Very<br>
-                <input type="radio" name="q7" value="4"> Extremely<br><center>
-                <button type="button" id="prevButton7" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton7" class="button">Next</button></center>
-            </div>
-            
-            <!-- Question 8 -->
-            <div id="question8" class="question hidden">
-                <h3>8. How fearful have you been of gaining weight?</h3><br>
-                <input type="radio" name="q8" value="0" required> Not at all<br>
-                <input type="radio" name="q8" value="1"> Slightly<br>
-                <input type="radio" name="q8" value="2"> Moderately<br>
-                <input type="radio" name="q8" value="3"> Very<br>
-                <input type="radio" name="q8" value="4" required> Extremely<br><center>
-                <button type="button" id="prevButton8" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="nextButton8" class="nextbutton">Next</button></center>
-            </div>
-            
-            <!-- Question 9 -->
-            <div id="question9" class="question hidden">
-                <h3>9. How distressed or upset have you been about binge eating episodes?</h3><br>
-                <input type="radio" name="q9" value="0" required> Not at all<br>
-                <input type="radio" name="q9" value="1"> Slightly<br>
-                <input type="radio" name="q9" value="2"> Moderately<br>
-                <input type="radio" name="q9" value="3"> Very<br>
-                <input type="radio" name="q9" value="4"> Extremely<br><center>
-                <button type="button" id="prevButton9" class="button">Previous</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" id="submitButton" class="button">Submit</button></center>
-            </div>
-        </form>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <form id="screeningForm">
+        <!-- Question 1 -->
+        <div id="question1" class="question">
+          <h1>SHORT SCREENING</h1>
+          <h3>
+            1. How often have you eaten what other people would regard as an
+            unusually large amount of food given the circumstances?
+          </h3>
+          <br />
+          <input type="radio" name="q1" value="0" required /> Never<br />
+          <input type="radio" name="q1" value="1" /> Less than once a month<br />
+          <input type="radio" name="q1" value="2" /> Once a month<br />
+          <input type="radio" name="q1" value="3" /> 2-3 times a month<br />
+          <input type="radio" name="q1" value="4" /> Once a week<br />
+          <input type="radio" name="q1" value="5" /> 2-6 times a week<br />
+          <input type="radio" name="q1" value="6" /> Once a day or more<br />
+          <button type="button" id="nextButton1" class="button">Next</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div id="question2" class="question hidden">
+          <h3>
+            2. How often have you had a sense of loss of control over eating (at
+            the time you were eating)?
+          </h3>
+          <br />
+          <input type="radio" name="q2" value="0" required /> Never<br />
+          <input type="radio" name="q2" value="1" /> Less than once a month<br />
+          <input type="radio" name="q2" value="2" /> Once a month<br />
+          <input type="radio" name="q2" value="3" /> 2-3 times a month<br />
+          <input type="radio" name="q2" value="4" /> Once a week<br />
+          <input type="radio" name="q2" value="5" /> 2-6 times a week<br />
+          <input type="radio" name="q2" value="6" /> Once a day or more<br />
+          <center>
+            <button type="button" id="prevButton2" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton2" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 3 -->
+        <div id="question3" class="question hidden">
+          <h3>
+            3. How often have you made yourself sick (vomited) as a means of
+            controlling your shape or weight?
+          </h3>
+          <br />
+          <input type="radio" name="q3" value="0" required /> Never<br />
+          <input type="radio" name="q3" value="1" /> Less than once a month<br />
+          <input type="radio" name="q3" value="2" /> Once a month<br />
+          <input type="radio" name="q3" value="3" /> 2-3 times a month<br />
+          <input type="radio" name="q3" value="4" /> Once a week<br />
+          <input type="radio" name="q3" value="5" /> 2-6 times a week<br />
+          <input type="radio" name="q3" value="6" /> Once a day or more<br />
+          <center>
+            <button type="button" id="prevButton3" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton3" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 4 -->
+        <div id="question4" class="question hidden">
+          <h3>
+            4. How often have you exercised in a "driven" or "compulsive" way as
+            a means of controlling your weight, shape, or amount of fat, or to
+            burn off calories?
+          </h3>
+          <br />
+          <input type="radio" name="q4" value="0" required /> Never<br />
+          <input type="radio" name="q4" value="1" /> Less than once a month<br />
+          <input type="radio" name="q4" value="2" /> Once a month<br />
+          <input type="radio" name="q4" value="3" /> 2-3 times a month<br />
+          <input type="radio" name="q4" value="4" /> Once a week<br />
+          <input type="radio" name="q4" value="5" /> 2-6 times a week<br />
+          <input type="radio" name="q4" value="6" /> Once a day or more<br />
+          <center>
+            <button type="button" id="prevButton4" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton4" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 5 -->
+        <div id="question5" class="question hidden">
+          <h3>
+            5. How often have you been deliberately trying to limit the amount
+            of food you eat to influence your shape or weight (whether or not
+            you have succeeded)?
+          </h3>
+          <br />
+          <input type="radio" name="q5" value="0" required /> Never<br />
+          <input type="radio" name="q5" value="1" /> Less than once a month<br />
+          <input type="radio" name="q5" value="2" /> Once a month<br />
+          <input type="radio" name="q5" value="3" /> 2-3 times a month<br />
+          <input type="radio" name="q5" value="4" /> Once a week<br />
+          <input type="radio" name="q5" value="5" /> 2-6 times a week<br />
+          <input type="radio" name="q5" value="6" /> Once a day or more<br />
+          <center>
+            <button type="button" id="prevButton5" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton5" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 6 -->
+        <div id="question6" class="question hidden">
+          <h3>6. How dissatisfied have you been with your weight?</h3>
+          <br />
+          <input type="radio" name="q6" value="0" required /> Not at all<br />
+          <input type="radio" name="q6" value="1" /> Slightly<br />
+          <input type="radio" name="q6" value="2" /> Moderately<br />
+          <input type="radio" name="q6" value="3" /> Very<br />
+          <input type="radio" name="q6" value="4" /> Extremely<br />
+          <center>
+            <button type="button" id="prevButton6" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton6" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 7 -->
+        <div id="question7" class="question hidden">
+          <h3>7. How dissatisfied have you been with your shape?</h3>
+          <br />
+          <input type="radio" name="q7" value="0" required /> Not at all<br />
+          <input type="radio" name="q7" value="1" /> Slightly<br />
+          <input type="radio" name="q7" value="2" /> Moderately<br />
+          <input type="radio" name="q7" value="3" /> Very<br />
+          <input type="radio" name="q7" value="4" /> Extremely<br />
+          <center>
+            <button type="button" id="prevButton7" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton7" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 8 -->
+        <div id="question8" class="question hidden">
+          <h3>8. How fearful have you been of gaining weight?</h3>
+          <br />
+          <input type="radio" name="q8" value="0" required /> Not at all<br />
+          <input type="radio" name="q8" value="1" /> Slightly<br />
+          <input type="radio" name="q8" value="2" /> Moderately<br />
+          <input type="radio" name="q8" value="3" /> Very<br />
+          <input type="radio" name="q8" value="4" required /> Extremely<br />
+          <center>
+            <button type="button" id="prevButton8" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="nextButton8" class="button">Next</button>
+          </center>
+        </div>
+
+        <!-- Question 9 -->
+        <div id="question9" class="question hidden">
+          <h3>
+            9. How distressed or upset have you been about binge eating
+            episodes?
+          </h3>
+          <br />
+          <input type="radio" name="q9" value="0" required /> Not at all<br />
+          <input type="radio" name="q9" value="1" /> Slightly<br />
+          <input type="radio" name="q9" value="2" /> Moderately<br />
+          <input type="radio" name="q9" value="3" /> Very<br />
+          <input type="radio" name="q9" value="4" /> Extremely<br />
+          <center>
+            <button type="button" id="prevButton9" class="button">
+              Previous</button
+            >&nbsp;&nbsp;&nbsp;
+            <button type="button" id="submitButton" class="button">
+              Submit
+            </button>
+          </center>
+        </div>
+      </form>
     </div>
 
     <!-- The Modal -->
     <div id="resultModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p id="resultText"></p>
-            <a id="continueLink" href="#" onclick="navigateToSignup()"> 
-                <button class="button" type="button">Continue</button>
-            </a>
-        </div>
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="resultText"></p>
+        <a id="continueLink" href="#" onclick="navigateToSignup()">
+          <button class="button" type="button">Continue</button>
+        </a>
+      </div>
     </div>
 
     <script>
-        let currentQuestion = 1;
+      let currentQuestion = 1;
 
-        function showQuestion(questionNumber) {
-            for (let i = 1; i <= 9; i++) {
-                document.getElementById('question' + i).style.display = (i === questionNumber) ? 'block' : 'none';
-            }
+      function showQuestion(questionNumber) {
+        for (let i = 1; i <= 9; i++) {
+          document.getElementById("question" + i).style.display =
+            i === questionNumber ? "block" : "none";
         }
+        updateProgressBar();
+      }
 
-        document.getElementById('nextButton1').addEventListener('click', () => { showQuestion(2); currentQuestion = 2; });
-        document.getElementById('prevButton2').addEventListener('click', () => { showQuestion(1); currentQuestion = 1; });
-        document.getElementById('nextButton2').addEventListener('click', () => { showQuestion(3); currentQuestion = 3; });
-        document.getElementById('prevButton3').addEventListener('click', () => { showQuestion(2); currentQuestion = 2; });
-        document.getElementById('nextButton3').addEventListener('click', () => { showQuestion(4); currentQuestion = 4; });
-        document.getElementById('prevButton4').addEventListener('click', () => { showQuestion(3); currentQuestion = 3; });
-        document.getElementById('nextButton4').addEventListener('click', () => { showQuestion(5); currentQuestion = 5; });
-        document.getElementById('prevButton5').addEventListener('click', () => { showQuestion(4); currentQuestion = 4; });
-        document.getElementById('nextButton5').addEventListener('click', () => { showQuestion(6); currentQuestion = 6; });
-        document.getElementById('prevButton6').addEventListener('click', () => { showQuestion(5); currentQuestion = 5; });
-        document.getElementById('nextButton6').addEventListener('click', () => { showQuestion(7); currentQuestion = 7; });
-        document.getElementById('prevButton7').addEventListener('click', () => { showQuestion(6); currentQuestion = 6; });
-        document.getElementById('nextButton7').addEventListener('click', () => { showQuestion(8); currentQuestion = 8; });
-        document.getElementById('prevButton8').addEventListener('click', () => { showQuestion(7); currentQuestion = 7; });
-        document.getElementById('nextButton8').addEventListener('click', () => { showQuestion(9); currentQuestion = 9; });
-        document.getElementById('prevButton9').addEventListener('click', () => { showQuestion(8); currentQuestion = 8; });
-        document.getElementById('submitButton').addEventListener('click', () => {
-            calculateResult();
-        });
-
-        function calculateResult() {
-            const form = document.forms["screeningForm"];
-            const q1 = parseInt(form["q1"].value);
-            const q2 = parseInt(form["q2"].value);
-            const q3 = parseInt(form["q3"].value);
-            const q4 = parseInt(form["q4"].value);
-            const q5 = parseInt(form["q5"].value);
-            const q6 = parseInt(form["q6"].value);
-            const q7 = parseInt(form["q7"].value);
-            const q8 = parseInt(form["q8"].value);
-            const q9 = parseInt(form["q9"].value);
-            const totalScore = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9;
-
-            let result = "";
-
-            if (totalScore >= 16) {
-                if (q5 >= 4 && q6 >= 3 && q7 >= 3) {
-                    result = "⚠️High Risk of Anorexia Nervosa";
-                } else {
-                    result = "⚠️High Risk of Bulimia Nervosa";
-                }
-            } else if (totalScore >= 9) {
-                if (q1 >= 4 && q2 >= 4 && q3 <= 2 && q4 <= 2 && q9 >= 3) {
-                    result = "⚠️High Risk of Binge Eating Disorder";
-                } else {
-                    result = " Moderate Risk - Seek Further Evaluation";
-                }
-            } else {
-                result = "🫡 Low Risk - Monitoring Advised";
-            }
-
-            document.getElementById("resultText").innerText = result;
-            document.getElementById("resultModal").style.display = "block";
-            
-            document.getElementById('continueLink').href = `/signup?result=${encodeURIComponent(result)}`;
-        }
-
-        function closeModal() {
-            document.getElementById("resultModal").style.display = "none";
-        }
-
-        // Initialize the form by showing the first question
+      document.getElementById("nextButton1").addEventListener("click", () => {
+        showQuestion(2);
+        currentQuestion = 2;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton2").addEventListener("click", () => {
         showQuestion(1);
-        function navigateToSignup() {
-            // Close the modal before navigating
-            closeModal();
+        currentQuestion = 1;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton2").addEventListener("click", () => {
+        showQuestion(3);
+        currentQuestion = 3;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton3").addEventListener("click", () => {
+        showQuestion(2);
+        currentQuestion = 2;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton3").addEventListener("click", () => {
+        showQuestion(4);
+        currentQuestion = 4;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton4").addEventListener("click", () => {
+        showQuestion(3);
+        currentQuestion = 3;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton4").addEventListener("click", () => {
+        showQuestion(5);
+        currentQuestion = 5;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton5").addEventListener("click", () => {
+        showQuestion(4);
+        currentQuestion = 4;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton5").addEventListener("click", () => {
+        showQuestion(6);
+        currentQuestion = 6;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton6").addEventListener("click", () => {
+        showQuestion(5);
+        currentQuestion = 5;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton6").addEventListener("click", () => {
+        showQuestion(7);
+        currentQuestion = 7;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton7").addEventListener("click", () => {
+        showQuestion(6);
+        currentQuestion = 6;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton7").addEventListener("click", () => {
+        showQuestion(8);
+        currentQuestion = 8;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton8").addEventListener("click", () => {
+        showQuestion(7);
+        currentQuestion = 7;
+        updateProgressBar();
+      });
+      document.getElementById("nextButton8").addEventListener("click", () => {
+        showQuestion(9);
+        currentQuestion = 9;
+        updateProgressBar();
+      });
+      document.getElementById("prevButton9").addEventListener("click", () => {
+        showQuestion(8);
+        currentQuestion = 8;
+        updateProgressBar();
+      });
+      document.getElementById("submitButton").addEventListener("click", () => {
+        calculateResult();
+      });
 
-            // Get the result from the link
-            const url = new URL(document.getElementById('continueLink').href);
-            const result = url.searchParams.get('result');
+      function calculateResult() {
+        const form = document.forms["screeningForm"];
+        const q1 = parseInt(form["q1"].value);
+        const q2 = parseInt(form["q2"].value);
+        const q3 = parseInt(form["q3"].value);
+        const q4 = parseInt(form["q4"].value);
+        const q5 = parseInt(form["q5"].value);
+        const q6 = parseInt(form["q6"].value);
+        const q7 = parseInt(form["q7"].value);
+        const q8 = parseInt(form["q8"].value);
+        const q9 = parseInt(form["q9"].value);
+        const totalScore = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9;
 
-            // Navigate to the /signup route with the result
-            window.location.href = `/signup?result=${encodeURIComponent(result)}`;
+        let result = "";
+
+        if (totalScore >= 16) {
+          if (q5 >= 4 && q6 >= 3 && q7 >= 3) {
+            result = "⚠️High Risk of Anorexia Nervosa";
+          } else {
+            result = "⚠️High Risk of Bulimia Nervosa";
+          }
+        } else if (totalScore >= 9) {
+          if (q1 >= 4 && q2 >= 4 && q3 <= 2 && q4 <= 2 && q9 >= 3) {
+            result = "⚠️High Risk of Binge Eating Disorder";
+          } else {
+            result = " Moderate Risk - Seek Further Evaluation";
+          }
+        } else {
+          result = "🫡 Low Risk - Monitoring Advised";
         }
-    </script>
-</body>
-</html>
 
+        document.getElementById("resultText").innerText = result;
+        document.getElementById("resultModal").style.display = "block";
+
+        document.getElementById(
+          "continueLink"
+        ).href = `/signup?result=${encodeURIComponent(result)}`;
+      }
+
+      function closeModal() {
+        document.getElementById("resultModal").style.display = "none";
+      }
+      function updateProgressBar() {
+        const totalQuestions = 9;
+        const progressBar = document.getElementById("progressBar");
+        const percentage = ((currentQuestion - 1) / (totalQuestions - 1)) * 100; // Correctly calculates the percentage
+        progressBar.style.width = percentage + "%";
+        progressBar.innerText = Math.round(percentage) + "%"; // Optional: Show percentage text
+      }
+      // Initialize the form by showing the first question
+      showQuestion(1);
+      function navigateToSignup() {
+        // Close the modal before navigating
+        closeModal();
+
+        // Get the result from the link
+        const url = new URL(document.getElementById("continueLink").href);
+        const result = url.searchParams.get("result");
+
+        // Navigate to the /signup route with the result
+        window.location.href = `/signup?result=${encodeURIComponent(result)}`;
+      }
+    </script>
+  </body>
+</html>
