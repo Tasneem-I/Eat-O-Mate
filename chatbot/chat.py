@@ -1,6 +1,6 @@
 
 import streamlit as st
-
+import os
 import google.generativeai as ggi
 
 st.set_page_config(page_title="Tarry from Eat-O-Mate", page_icon="https://github.com/StellarStrivers/Eat-O-Mate/blob/main/static/chatbot.png?raw=true")
@@ -16,7 +16,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-ggi.configure(api_key = API_KEY)
+ggi.configure(api_key = os.get_env('API_KEY'))
 
 model = ggi.GenerativeModel("gemini-pro") 
 chat = model.start_chat()
