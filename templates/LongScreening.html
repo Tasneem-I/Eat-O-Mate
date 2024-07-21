@@ -396,6 +396,10 @@ body {
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <p id="resultText"></p>
+            
+            <a id="continueLink" href="#" onclick="navigateToSignup()"> 
+                <button class="button" type="button">Continue</button>
+            </a>
         </div>
     </div>
 
@@ -463,10 +467,23 @@ body {
             // Display result in modal
             document.getElementById('resultText').innerText = result;
             document.getElementById('resultModal').style.display = 'block';
+            document.getElementById('continueLink').href = `/signup?result=${encodeURIComponent(result)}`;
+        
         }
 
         function closeModal() {
             document.getElementById('resultModal').style.display = 'none';
+        }
+        function navigateToSignup() {
+            // Close the modal before navigating
+            closeModal();
+
+            // Get the result from the link
+            const url = new URL(document.getElementById('continueLink').href);
+            const result = url.searchParams.get('result');
+
+            // Navigate to the /signup route with the result
+            window.location.href = `/signup?result=${encodeURIComponent(result)}`;
         }
     </script>
 </body>

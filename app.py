@@ -85,7 +85,7 @@ with app.app_context():
 
 
 @login_manager.user_loader
-def user_load(user_id):
+def load_user(user_id):
     return Users.query.get(int(user_id))
 
 short_model = joblib.load("short_screen_model/final_dt.joblib")
@@ -125,6 +125,25 @@ def long():
 def short():
     return render_template("ShortScreening.html")
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        usertype = request.args.get('result')
+        name = request.form.get("name")
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        height = request.form.get("height")
+        weight = request.form.get("weight")
+        points = 100
+        user = Users(name=name, email=email, username=username, password=password,height=height,weight=weight, usertype=usertype,
+points=points)
+        db.session.add(user)
+        db.session.commit()
+        points = user.points
+        login_user(user)
+        return render_template("meallog.html", points=points)
+    return render_template("signup.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -237,7 +256,7 @@ def add_meal_log():
     })
 
 @app.route("/get_meal_logs", methods=["GET"])
-#@login_required
+@login_required
 def get_meal_logs():
     logs = MealLog.query.filter_by(user_id=current_user.id).all()
     return jsonify([
