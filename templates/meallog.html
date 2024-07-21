@@ -14,15 +14,15 @@
         padding: 15px;
         margin-top: 20px;
         width: 85%;
-        background-color: white;
-        border: 1px solid #b2dfdb;
+        background-color: #f2f4e2;
+        border: 1px solid #ed8218;
         border-radius: 15px;
         text-align: justify;
         font-size: 20px;
         color: black;
         margin-right: 20px;
         font-family: Georgia, "Times New Roman", Times, serif;
-        line-height: 2.5;
+        line-height: 2;
       }
       .nav-links {
         display: flex;
@@ -32,7 +32,7 @@
         text-decoration: none;
       }
       .nav-links a {
-        color: #894949;
+        color: #whitesmoke;
         font-size: 20px;
         font-weight: bold;
         margin-right: 60px;
@@ -48,10 +48,10 @@
       body {
         margin: 0;
         padding: 0;
-        background-color: #edf6f9;
+        background-color: #fffbf0;
       }
       .navbar {
-        background: #83c5be;
+        background: #53655c;
         padding: 10px 15px;
         width: 100%;
         display: flex;
@@ -84,7 +84,7 @@
       }
       .divider {
         border: none;
-        border-top: 2px solid #b2dfdb;
+        border-top: 2px solid #333333;
         margin: 10px 0;
       }
       .float-right {
@@ -98,21 +98,58 @@
       }
       .card {
         width: 18rem;
+        background-color: #f2f4e2; /* White background for cards */
+        border: 1px solid #dedede; /* Light gray border */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      }
+      .card-body {
+        padding: 15px;
+        color: #333333; /* Dark gray text color */
       }
       .modal-dialog {
         max-width: 500px;
       }
       .modal-content {
         padding: 20px;
+        border-radius: 10px; /* Rounded corners for modal */
+        background-color: #f2f4e2; /* White background */
       }
       .modal-body {
         padding: 20px;
+      }
+      .modal-header {
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .modal-title {
+        color: #333333; /* Dark gray text color */
       }
       .filler-text {
         text-align: center;
         margin: 40px 0;
         font-size: 18px;
         color: #53655c;
+      }
+      .btn-primary {
+        background-color: #ed8218 !important; /* Orange color */
+        color: #ffffff !important; /* White text color */
+        border: none !important; /* Remove default border */
+        padding: 10px 20px !important; /* Adjust padding as needed */
+        font-size: 16px !important; /* Adjust font size as needed */
+        border-radius: 15px !important; /* Rounded corners */
+        cursor: pointer !important; /* Pointer cursor on hover */
+        transition: none !important; /* Remove transition effects */
+        outline: none !important; /* Remove default focus outline */
+        box-shadow: none !important; /* Remove any box shadow */
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus,
+      .btn-primary:active {
+        background-color: #ed8218 !important; /* Keep the color consistent */
+        color: #ffffff !important; /* Keep text color consistent */
+        border: none !important; /* Keep border style consistent */
+        box-shadow: none !important; /* Remove any focus or hover shadow */
       }
     </style>
   </head>
@@ -133,24 +170,26 @@
     </nav>
 
     <div class="intro-section">
-      <h1>Welcome to Your Meal Logger</h1>
+      <h1 style="margin-top: 30px; margin-bottom: 30px">
+        Welcome to Your Meal Logger
+      </h1>
       <div class="track-container">
         <p>
           Track your meals and transform your eating habits with ease. As they
           say, "Every meal counts!" Here, you can: <br />1. Track your meals
           <br />2. Reflect on your eating patterns<br />
           3. Stay on top of your nutrition goals<br />
-          With each entry, you get one step closer to a healthier you! Feeling a
-          bit lost? Don’t worry! Logging your meals earns you Nurture Stars. Use
-          these stars to redeem cool rewards and stay motivated. Ready to get
-          started? Let’s dive in and make every meal matter!
+          With each entry, you get one step closer to a healthier you!<br />
+          Feeling a bit lost? Don’t worry! Logging your meals earns you Nurture
+          Stars. Use these stars to redeem cool rewards and stay motivated.
+          Ready to get started? Let’s dive in and make every meal matter!
         </p>
       </div>
     </div>
 
     <div class="planner-section">
       <div class="planner-header">
-        <h2>Planner</h2>
+        <h2 style="margin-top: 30px; margin-bottom: 30px">Planner</h2>
         <button
           class="btn btn-primary"
           data-toggle="modal"
