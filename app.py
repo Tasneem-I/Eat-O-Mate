@@ -261,6 +261,7 @@ def add_meal_log():
         urge_to_restrict=data["urge_to_restrict"],
         eat_with=data["eat_with"]
     )
+    current_user.points+=20
     db.session.add(new_log)
     db.session.commit()
     return jsonify({
