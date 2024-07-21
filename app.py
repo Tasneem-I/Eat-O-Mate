@@ -155,7 +155,7 @@ def login():
             session["user_id"] = user.id
             session["user"]= user.points
             logins= True
-            return render_template("home_loggedin.html", login=logins, points= user.points)
+            return render_template("meallog.html", login=logins, points= user.points)
     return render_template("login.html")
 
 @app.route("/shop")
@@ -164,6 +164,21 @@ def shop():
     points = current_user.points
     mons = EatMon.query.all()
     return render_template("monshop.html", points=points, mons=mons)
+
+@app.route("/buy_mon", methods=["POST"])
+@login_required
+def buy_mon():
+    mon_id = request.form.get("mon_id")
+    mon = EatMon.query.get(mon_id)
+    if mon and current_user.points >= mon.points:
+        current_user.points -= mon.points
+        db.session.commit()
+        flash("Congratulations, you bought a GreeniMon!!")
+        return redirect(url_for('shop'))
+    else:
+        # You can add logic to save the purchase if needed
+        flash("Not enough points, collect more points by completing quests")
+    return redirect(url_for('shop'))
 
 @app.route('/meallog')
 @login_required
@@ -218,14 +233,17 @@ def meal_log():
 
 
 @app.route('/distract', methods=["GET", "POST"])
+@login_required
 def distract(): 
-    return render_template('/distractions_start.html')
+    userpoints = current_user.points
+    return render_template('/distractions_start.html', points= userpoints)
 
 @app.route('/distract_session')
 def distract_session():
     global img
     ex = ['static/cobra.png', 'static/downwarddog.png', 'static/halfbend.png', 'static/mountain.png', 'static/plank.png', 'static/seatbend.png', 'static/staff.png', 'static/warrior1.png']
     img = random.choice(ex)
+    current_user.points +=20
     return render_template('/distractions.html', img = img), 200, {'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
   
