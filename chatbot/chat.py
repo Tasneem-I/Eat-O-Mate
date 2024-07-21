@@ -16,7 +16,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-ggi.configure(api_key = "AIzaSyBmlUKVyw3eHkW0wjyLhcvLBnGT9MP_EmI")
+ggi.configure(api_key = API_KEY)
 
 model = ggi.GenerativeModel("gemini-pro") 
 chat = model.start_chat()
@@ -43,7 +43,7 @@ for role, message in st.session_state.chat_history:
     else:
         st.markdown(f"""
         <div style='display: flex; align-items: center; margin-bottom: 10px;'>
-            <img src='https://tse4.mm.bing.net/th?id=OIP.jixXH_Els1MXBRmKFdMQPAHaHa&pid=Api&P=0&h=180' style='border-radius: 50%; margin-right: 10px;' />
+            <img src='https://github.com/Tasneem-I/Eat-O-Mate/blob/main/static/chatuser.png?raw=true' style='border-radius: 50%; margin-right: 10px;' />
             <div style='background-color: #dff0d8; padding: 10px; border-radius: 10px; margin-right: 10px;'>
                 {message}
             </div>
