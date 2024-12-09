@@ -90,3 +90,6 @@ We brainstormed and came up with a lot more ideas than what we could implement d
 3. We also plan to find a way to provide an optional way for users to connect with clinical experts to curate better treatment plans and a way to implement an anonymous conversation feature for users to discuss about their problems in a safer environment with people in similar position.
 4. A computer vision based posture checker for exercising would be an interesting feature to add, which can increase the gamification process.
 5. Most importantly, we also want to find ways to extend our awareness details on eating disorders to be more gamified, and increase our database on eating disorders like orthorexia, which is a rising type where a person is so heath conscious that they eliminate a certain category of food due to fear, resulting in malnutrition.
+
+
+----------------------------------------
